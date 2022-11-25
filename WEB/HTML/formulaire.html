@@ -1,0 +1,94 @@
+<!--
+
+
+Saisies => input
+type => text,password,number,date,email,tel(pour afficher le clavier numerique sur tel)
+
+textearea =>
+
+
+Liste deroulante =>  select
+
+
+cocher => rond => choix unique (radio) , carre => choix multiple (checkbox)
+
+
+button => submit, reset
+
+
+
+-->
+
+<p title="c'est un parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+
+<form>
+  <fieldset>
+
+      <legend>Bloc 1</legend>
+    <table>
+      <tr><td>  <label for="login">Login :</label> </td>  <td> <input  id="login" maxlength="8" autofocus placeholder="Saisir votre login" type="text" title="Saisir login"></td> </tr>
+      <tr><td>  Password : </td>  <td>  <input required placeholder="Saisir votre password" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre"></td></tr>
+      <tr><td>  Mail : </td>  <td>  <input required type="email" value="jordanabid@gmail.com"></td></tr>
+      <tr><td>  Site : </td>  <td>  <input required type="url" value="https://www.google.fr"></td></tr>
+      <tr><td>  Tel : </td>  <td>  <input placeholder="Saisir votre tel" type="tel"></td></tr>
+      <tr><td> *** Age : </td>  <td>  <input placeholder="Saisir votre age" type="number"></td></tr>
+    </table>
+  </fieldset>
+
+
+
+  <fieldset>
+    <legend>Bloc 2</legend>
+
+    <table>
+      <tr><td> ***Naissance : </td>  <td>  <input type="date" value="1993-05-25"></td></tr>
+      <tr><td>  Heure : </td>  <td>  <input type="time"></td></tr>
+      <tr><td>  Semaine : </td>  <td>  <input type="week"></td></tr>
+      <tr><td>  ****Salaire : </td>  <td>  <input type="number"></td></tr>
+      <tr><td>  Semaine : </td>  <td>  <input type="week"></td></tr>
+      <tr><td>  Fond : </td>  <td>  <input type="color"></td></tr>
+
+      <tr>
+        <td>  Civilite : </td>
+        <td><label for="civ-femme">Femme</label><input id="civ-femme" checked name="civ" type="radio"> <label for="civ-homme">Homme</label><input name="civ"  id="civ-homme"type="radio"> <label for="civ-nb">NB</label><input id="civ-nb" name="civ" type="radio"></td>
+      </tr>
+
+      <tr>
+        <td>Devs : </td>
+        <td>JAVA<input checked type="checkbox"> SQL<input type="checkbox"> HTML<input type="checkbox"></td>
+      </tr>
+
+    </table>
+
+  </fieldset>
+
+  <fieldset>
+  <legend>Bloc 3</legend>
+    <table>
+      <tr><td>  OS : </td>  <td>
+        <select>
+          <optgroup label="CA COUTE CHER">
+            <option>MacOs</option>
+            <option selected>Windows</option>
+            <optgroup label="C'est gratuit">
+              <option>Linux</option>
+            </select>
+          </td></tr>
+
+
+          <tr>
+            <td>BIO : </td>
+            <td><textarea style="resize: none;color:red" cols="50" rows="5"  placeholder="Saisir votre bio">bio default</textarea></td>
+          </tr>
+
+        </table>
+
+
+      </fieldset>
+      <input type="submit" value="Envoyer">  <input type="reset">
+
+
+    </form>
