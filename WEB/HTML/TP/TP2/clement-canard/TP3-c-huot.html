@@ -1,0 +1,55 @@
+<form>
+  <fieldset>
+
+      <legend>Information personelles</legend>
+    <table>
+
+      <tr><td>  Mail : </td>  <td>  <input required type="email" value="lorem@mail.fr"></td></tr>
+      <tr><td>  Password : </td>  <td>  <input required placeholder="********" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre"></td></tr>
+      <tr><td>  OS : </td>  <td>
+        <select>
+            <option selected>Femme</option>
+            <option >Homme</option>
+            <option>NB</option>
+            </select>
+          </td></tr>
+          <tr><td> date de Naissance : </td>  <td>  <input type="date" value="2000-01-01"></td></tr>
+    </table>
+  </fieldset>
+
+
+  <fieldset>
+
+      <legend>Préference</legend>
+    <table>
+      <tr>
+        <td>  Couleur favorite: </td>
+        <td><label for="c-R">Rouge</label><input id="c-R" name="civ" type="radio">
+        <label for="c-V">Vert</label><input name="civ"  id="c-V"type="radio">
+        <label for="c-B">Bleu</label><input id="c-B" name="civ" type="radio">
+      </td>
+      </tr>
+
+      <tr>
+        <td>Centres d'intérêts: </td>
+        <td><input type="checkbox"> Sport
+          <input type="checkbox"> Danse
+          <input type="checkbox"> Musique
+          <input type="checkbox"> Informatique
+        </td>
+      </tr>
+    </table>
+  </fieldset>
+
+  <fieldset>
+      <legend>Commentaire</legend>
+    <table>
+      <tr>
+        <td>Message : </td>
+        <td><textarea style="resize: none" cols="50" rows="5"  placeholder="Un petit commentaire ?"></textarea></td>
+      </tr>
+    </table>
+
+
+  </fieldset>
+  <input type="submit" value="Envoyer">
