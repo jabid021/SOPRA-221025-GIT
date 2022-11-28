@@ -22,19 +22,24 @@ button => submit, reset
 <p title="c'est un parag">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
+<h1>Update Profil 37</h1>
 
-
-<form>
+<form action="pageCible.html" method="POST" enctype="multipart/form-data" >
+  <input readonly type="number" value="37">
+  <input disabled type="number" value="37">
+  <input type="hidden" name="id" value="37">
+  <input type="hidden" name="mode" value="ajout">
   <fieldset>
 
       <legend>Bloc 1</legend>
     <table>
-      <tr><td>  <label for="login">Login :</label> </td>  <td> <input  id="login" maxlength="8" autofocus placeholder="Saisir votre login" type="text" title="Saisir login"></td> </tr>
-      <tr><td>  Password : </td>  <td>  <input required placeholder="Saisir votre password" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre"></td></tr>
-      <tr><td>  Mail : </td>  <td>  <input required type="email" value="jordanabid@gmail.com"></td></tr>
-      <tr><td>  Site : </td>  <td>  <input required type="url" value="https://www.google.fr"></td></tr>
-      <tr><td>  Tel : </td>  <td>  <input placeholder="Saisir votre tel" type="tel"></td></tr>
-      <tr><td> *** Age : </td>  <td>  <input placeholder="Saisir votre age" type="number"></td></tr>
+
+      <tr><td>  <label for="login">Login :</label> </td>  <td> <input  name="login" id="login" maxlength="8" autofocus placeholder="Saisir votre login" type="text" title="Saisir login"></td> </tr>
+      <tr><td>  Password : </td>  <td>  <input name="password" required placeholder="Saisir votre password" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre"></td></tr>
+      <tr><td>  Mail : </td>  <td>  <input name="email" required type="email" value="jordanabid@gmail.com"></td></tr>
+      <tr><td>  Site : </td>  <td>  <input name="url" required type="url" value="https://www.google.fr"></td></tr>
+      <tr><td>  Tel : </td>  <td>  <input name="tel" placeholder="Saisir votre tel" type="tel"></td></tr>
+      <tr><td>  Age : </td>  <td>  <input name="age" min="0" max="120" placeholder="Saisir votre age" type="number"></td></tr>
     </table>
   </fieldset>
 
@@ -44,23 +49,26 @@ button => submit, reset
     <legend>Bloc 2</legend>
 
     <table>
-      <tr><td> ***Naissance : </td>  <td>  <input type="date" value="1993-05-25"></td></tr>
-      <tr><td>  Heure : </td>  <td>  <input type="time"></td></tr>
+      <tr><td>  Naissance : </td>  <td>  <input type="date" value="1993-05-25"></td></tr>
+      <tr><td>  Heure : </td>  <td>  <input value="09:00" min="09:00" max="17:00" step="900" type="time"></td></tr>
       <tr><td>  Semaine : </td>  <td>  <input type="week"></td></tr>
-      <tr><td>  ****Salaire : </td>  <td>  <input type="number"></td></tr>
+      <tr><td>  Salaire : </td>  <td>  <input step="0.01" type="number"></td></tr>
       <tr><td>  Semaine : </td>  <td>  <input type="week"></td></tr>
-      <tr><td>  Fond : </td>  <td>  <input type="color"></td></tr>
+      <tr><td>  Fond : </td>  <td>  <input name="fond" type="color"></td></tr>
 
       <tr>
         <td>  Civilite : </td>
-        <td><label for="civ-femme">Femme</label><input id="civ-femme" checked name="civ" type="radio"> <label for="civ-homme">Homme</label><input name="civ"  id="civ-homme"type="radio"> <label for="civ-nb">NB</label><input id="civ-nb" name="civ" type="radio"></td>
+        <td><label for="civ-femme">Femme</label><input id="civ-femme" value="femme" checked name="civ" type="radio"> <label for="civ-homme">Homme</label><input  value="homme" name="civ"  id="civ-homme"type="radio"> <label for="civ-nb">NB</label><input id="civ-nb" value="nb" name="civ" type="radio"></td>
       </tr>
 
       <tr>
         <td>Devs : </td>
-        <td>JAVA<input checked type="checkbox"> SQL<input type="checkbox"> HTML<input type="checkbox"></td>
+        <td>JAVA<input checked name="java" type="checkbox"> SQL<input type="checkbox"> HTML<input type="checkbox"></td>
       </tr>
-
+      <tr>
+        <td>CV </td>
+        <td><input type="file"></td>
+      </tr>
     </table>
 
   </fieldset>
@@ -69,21 +77,24 @@ button => submit, reset
   <legend>Bloc 3</legend>
     <table>
       <tr><td>  OS : </td>  <td>
-        <select>
+        <select name="OS">
           <optgroup label="CA COUTE CHER">
             <option>MacOs</option>
-            <option selected>Windows</option>
+            <option value="2" selected>Windows</option>
             <optgroup label="C'est gratuit">
-              <option>Linux</option>
+              <option value="3">Linux</option>
             </select>
           </td></tr>
 
 
           <tr>
             <td>BIO : </td>
-            <td><textarea style="resize: none;color:red" cols="50" rows="5"  placeholder="Saisir votre bio">bio default</textarea></td>
+            <td><textarea  name="bio" style="resize: none;color:red" cols="50" rows="5"  placeholder="Saisir votre bio">bio default</textarea></td>
           </tr>
-
+          <tr>
+            <td>Note</td>
+            <td><input name="note" type="range" min="0" max="10"></td>
+            </tr>
         </table>
 
 
@@ -92,3 +103,14 @@ button => submit, reset
 
 
     </form>
+
+
+
+    <input type="button" value="button">
+
+    <button>Valider</button>
+
+
+
+    <audio controls src="assets/audio/audio.mp3"></audio>
+    <video width="250" controls src="assets/video/video.mp4" poster="assets/img/ds.jfif"></video>
