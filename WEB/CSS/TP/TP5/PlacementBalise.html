@@ -1,121 +1,195 @@
 <style>
 
 
-body
-{
-	margin:0;
-	background-color:#F4EFE7;
-}
+	body
+	{
+		margin:0;
+		background-color:#F4EFE7;
+	}
 
-#header
-{
-	display:flex;
-	height: 140px;
+	header
+	{
+		height: 140px;
+	}
 
-}
-
-#logo
-{
-	background-color:white;
-	width:12%;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:60px;
-	font-weight:bold;
+	#logo
+	{
+		background-color:white;
+		width:12%;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		font-size:60px;
+		font-weight:bold;
 		border:solid black 1px;
-}
+	}
 
-#accueil
-{
-	background-color:grey;
-	width:88%;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	font-size:40px;
-	text-transform:uppercase;
+	#accueil
+	{
+		background-color:grey;
+		width:88%;
+		display:flex;
+		justify-content:center;
+		align-items:center;
+		font-size:40px;
+		text-transform:uppercase;
 		border:solid black 1px;
-}
+	}
+
+
+
+	header,main,footer
+	{
+		display:flex;
+	}
+
+main
+	{
+		height:120%;
+	}
+
+	main nav
+	{
+		width:15%;
+		display:flex;
+		flex-direction: column;
+		margin-top:15px;
+
+	}
+
+	main nav div
+	{
+		margin-left: 30px;
+		margin-top:10px;
+	}
+
+	section
+	{
+		width:72%;
+	}
+
+	aside
+	{
+		width:13%;
+	}
+
+	aside li
+	{
+		list-style-type:none;
+	}
+
+
+	footer
+	{
+		background-color:yellow;
+		height:70px;
+		align-items:center;
+	}
+
+	footer nav
+	{
+		width:40%;
+		display:flex;
+	}
+
+	footer nav div
+	{
+		margin-left:15px;
+	}
+	#footerRight
+	{
+		width:60%;
+	}
 </style>
 
 
-
-
-
-
-
-<div id="header">
+<header>
 	<div id="logo">Logo</div>
 	<div id="accueil">Accueil</div>
-</div>
+</header>
+
+<main>
+	<nav>
+		<div><a href="#">Accueil</a></div>
+		<div><a href="#">Item 1</a></div>
+		<div><a href="#">Item 2</a></div>
+		<div><a href="#">Item 3</a></div>
+		<div><a href="#">Contact</a></div>
+	</nav>
+
+	<section>
+
+		<h1>Sujet de la page</h1>
+
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+			quis nostrud exercitation ullamco</p>
+
+
+			<h3>Article 1</h3>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+				quis nostrud exercitation ullamco</p>
+
+				<h3>Article 2</h3>
+
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+					tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+					quis nostrud exercitation ullamco rcitation ullamco</p>
+
+
+					<h3>Article 3</h3>
+
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco</p>
+
+						<h3>Article 4</h3>
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+							tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+							quis nostrud exercitation ullamco</p>
+
+							<h3>Article 5</h3>
+
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+								tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+								quis nostrud exercitation ullamco</p>
+
+								<h3>Article 6</h3>
+
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+									tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+									quis nostrud exercitation ullamco</p>
 
 
 
+								</section>
 
 
-Accueil
-Item 1
-Item 2
-Item 3
-Contact
-		Sujet de la page
+								<aside>
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
+									Archives
+									<ul>
+										<li><a href="">Août 2019</a></li>
+										<li><a href="">Juillet 2019</a></li>
+										<li><a href="">Juin 2019</a></li>
+										<li><a href="">Mai 2019</a></li>
+									</ul>
+								</aside>
 
+							</main>
 
-		Article 1
+							<footer>
+								<nav>
+									<div><a href="">Accueil</a></div>
+									<div><a href="">Plan</a></div>
+									<div><a href="">Contact</a></div>
+									<div><a href="">CGU</a></div>
+								</nav>
+								<div id="footerRight">
+									Gabarit - Copyrigth &#8471; 2019-2022
+								</div>
 
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 2
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco rcitation ullamco
-
-
-		Article 3
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 4
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 5
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-		Article 6
-
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco
-
-
-Archives
-	Août 2019
-	Juillet 2019
-	Juin 2019
-	Mai 2019
-
-
-
-
-Accueil
-	Plan
-	Contact
-	CGU
-
-Gabarit - Copyrigth &#8471; 2019-2022
+							</footer>
