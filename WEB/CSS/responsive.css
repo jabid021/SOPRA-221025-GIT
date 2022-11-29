@@ -1,0 +1,63 @@
+@media(max-width : 576px)
+{
+
+  #navPC
+  {
+    display:none;
+  }
+
+  #content
+  {
+    background-color:green;
+  }
+
+  p{width:50%;}
+
+}
+
+@media(min-width : 576px)  and (max-width:992px)
+{
+
+  #navPC
+  {
+    display:none;
+  }
+
+  #content
+  {
+    background-color:orange;
+  }
+
+  p{width:calc(100%/3);}
+}
+
+@media(min-width : 992px)
+{
+
+  #navTel
+  {
+    //visibility:hidden;
+    display:none;
+  }
+
+  #navPc
+  {
+    text-align:center;
+  }
+
+  #content
+  {
+    background-color:cyan;
+  }
+
+  p{width:25%;}
+}
+
+
+
+
+#content
+{
+  display:flex;
+  flex-wrap:wrap;
+}
