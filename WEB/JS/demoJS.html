@@ -1,0 +1,165 @@
+<script charset="utf-8">
+
+
+var demo; //=> static demo en java
+let varTempo;
+var age="29";
+var nb=10;
+//var tab = new Array(10);
+
+var notes = [10,8,5,20,17];
+var zoom =  ["Jordan","Meher","Charles"];
+
+
+var personne = new Object();
+personne.age=29;
+personne.prenom="Jordan";
+personne.nom="Abid";
+
+var personne2 = {nom:"Abid",prenom:"Jordan",age:29};
+
+var tabObject = [personne,personne2];
+
+var tabOject2= [
+{nom:"Abid",prenom:"Jordan",age:29},
+{nom:"Doe",prenom:"John",age:42}
+]
+
+
+
+console.log(tabObject);
+
+console.log(personne2);
+
+var choix = prompt("Choisir une info ?");
+
+console.log(personne);
+console.log(personne.age);
+console.log(personne["age"]);
+console.log(personne[choix]);
+
+
+
+alert(zoom.join("-*-"));
+zoom[40]="Toto";
+
+//zoom.length=1;
+
+console.log(notes);
+
+notes.sort(trierNumber);
+
+console.log(notes);
+
+
+function trierNumber(a,b)
+{
+  return a-b;
+}
+
+function trierNbLettres(prenom1,prenom2)
+{
+  return prenom1.length-prenom2.length;
+}
+
+
+/*
+do
+{
+  saisie=prompt("Saisir y");
+}while(saisie!="y");
+
+
+while(saisie=="y")
+{
+    saisie=prompt("Saisir n");
+}*/
+
+//zoom[zoom.length]="Clement";
+
+//Ajouter à la fin du tableau
+  zoom.push("Clément");
+
+//Ajouter au debut du tableau et decale d'une case les autres elements
+  zoom.unshift("Guy");
+
+//Retire le 1er element
+  //zoom.shift();
+
+//Retire le dernier element
+  //zoom.pop();
+
+zoom.sort(trierNbLettres);
+//zoom.reverse();
+//zoom.sort().reverse();
+
+console.log(zoom);
+
+
+/*
+for(let index in zoom)
+{
+  console.log(index + " - "+ zoom[index]);
+}
+
+for(let prenom of zoom)
+{
+  console.log(prenom);
+}
+*/
+
+
+//var tab=[10,true,"Jordan",{},10.5];
+
+/*
+
+for(let i=0;i<zoom.length;i++)
+{
+  console.log("Personne "+(i+1)+" - "+zoom[i]);
+}
+
+switch(nb)
+{
+  case 9 : console.log("pas bien");break;
+  case 10 : console.log("bien");break;
+}
+
+var result=(nb>=5)?"plus grand que 5":"Plus petit";
+console.log(result);
+
+*/
+
+
+
+/*if(age==29)
+{
+  console.log("29=='29'");
+}
+else{
+  console.log("29!='29'");
+}
+
+if(age===29)
+{
+  console.log("29=='29'");
+}
+else if{
+  console.log("29!='29'");
+}
+*/
+
+/*
+for(let i=0;i<10;i++)
+{
+  console.log("tour "+i);
+}
+
+console.log(i); i n'existe plus en dehors de la boucle for
+*/
+
+
+
+
+
+
+</script>
