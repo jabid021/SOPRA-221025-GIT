@@ -1,0 +1,99 @@
+<title>Titre de la page</title>
+
+
+<h1>Document Object Model</h1>
+<h2 class="elementImportant" id="h2Replace">Titre à remplacer</h2>
+
+<div  unAttribut="saValeur" id="baliseVide"></div>
+
+
+<p class="elementImportant class2">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<h2>Autre titre à remplacer</h2>
+
+
+<form>
+
+  Login : <input type="text" id="login" placeholder="Saisir login" value="jabid"><br>
+  <input id="btnValidate" type="submit">
+</form>
+
+<script>
+
+
+  console.log(document.title);
+  document.title="Nouveau titre";
+
+
+  pointeurTags();
+
+  function pointeurId()
+  {
+    var maBalise = document.getElementById("h2Replace");
+    //  console.log(maBalise);
+    //  var prop=prompt("Quelle prop changer ?");
+    //  var value = prompt("Saisir valeur");
+    //  maBalise.style.setProperty(prop,value);
+    h2Replace.style.fontFamily="Arial";
+    maBalise.style.setProperty("color","red");
+    //maBalise.style.setProperty("background-color","red");
+    //maBalise.style.color=value;
+    maBalise.style.backgroundColor="cyan";
+    maBalise.style.fontSize="75px";
+
+
+    console.log(maBalise.innerHTML);
+    maBalise.innerHTML="VOICI LE NOUVEAU TITRE";
+
+    //innerText ne prendra pas en compte les balises (les affiche comme du texte)
+    //document.getElementById("baliseVide").innerText="<b>content</b> <ul><li>Item1</li></ul>";
+
+    document.getElementById("baliseVide").innerHTML="<b>content</b> <ul><li>Item1</li></ul>";
+
+
+    //EN JS, on peut remplacer document.getElementById("x") directement par x.innerHTML
+    baliseVide.innerHTML="ca marche";
+    // document.getElementById("baliseVide").innerHTML=document.getElementById("h2Replace").innerHTML;
+
+    console.log(baliseVide.getAttribute("unAttribut"));
+    baliseVide.setAttribute("test","toto");
+    baliseVide.setAttribute("test","titi");
+    baliseVide.removeAttribute("test");
+
+
+    login.setAttribute("required",true);
+    //login.removeAttribute("required");
+    btnValidate.setAttribute("disabled",true);
+    //  btnValidate.removeAttribute("disabled");
+
+    login.disabled=true;
+    login.required=false;
+
+    console.log(login.value);
+    login.value="JORDAN";
+  }
+
+  function pointeurClass()
+  {
+    var mesBalises =  document.getElementsByClassName("elementImportant");
+
+    for(b of mesBalises)
+    {
+      b.style.color="red";
+    }
+  }
+
+  function pointeurTags()
+  {
+    var mesBalises =  document.getElementsByTagName("p");
+
+    for(b of mesBalises)
+    {
+      b.style.backgroundColor="cyan";
+    }
+  }
+
+
+</script>

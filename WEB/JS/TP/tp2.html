@@ -9,14 +9,26 @@
   A la fin du jeu, Il faut afficher dans la console le total de point (score : 4/5)
   */
 
-var p1={nom:"",capitale:""};
-var p2={nom:"",capitale:""};
-var p3={nom:"",capitale:""};
-var p4={nom:"",capitale:""};
-var p5={nom:"",capitale:""};
-
+var p1={nom:"France",capitale:"Marseille"};
+var p2={nom:"Espagne",capitale:"Madrid"};
+var p3={nom:"Norvege",capitale:"Oslo"};
+var p4={nom:"Luxembourg",capitale:"Luxembourg"};
+var p5={nom:"Angleterre",capitale:"Londres"};
 var pays = [p1,p2,p3,p4,p5];
 var score=0;
+var cpt=1;
+
+for(let p of pays)
+{
+ let reponse= prompt("Capitale du pays suivant : "+p.nom+" ("+cpt+"/"+pays.length+")")
+ if(reponse==p.capitale)
+ {
+   score++;
+ }
+ cpt++;
+}
+
+console.log("Fin du jeu, votre score est de : "+score+" / "+pays.length);
 
 
 </script>
