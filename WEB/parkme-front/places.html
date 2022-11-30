@@ -4,6 +4,9 @@ body{
     background-color: #F4F0E7;
 }
 
+h1{
+    margin: 0;
+}
 .ajout{
     background-color: #53AE58;
     height: 35px;
@@ -11,11 +14,12 @@ body{
     color:white;
     border: solid 1px #53AE58 ;
     border-radius: 10px; 
+    margin: 5px 0px;
 }
 
 .supp{
     background-color: #D13B47;
-    height: 35px;
+    height: 30px;
     width: 70px;
     color:white;
     border: solid 1px #D13B47 ;
@@ -24,10 +28,54 @@ body{
 }
 .modif{
     background-color: #FEBC1D;
-    height: 35px;
+    height: 30px;
     width: 70px;
     border: solid 1px #FEBC1D ;
     border-radius: 10px; 
+}
+#input{
+    background-color: white;
+}
+
+#list table{
+    width: 100%;
+    text-align: left;
+}
+
+#table1 tr:nth-of-type(odd){
+    background-color: #E8E3DB;
+    
+}
+
+#table1 tr{
+height: 40px;
+}
+
+#input{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 130px;
+    box-shadow: 0px 2px 9px;
+}
+
+#input button{
+   position:absolute;
+    width:90%;
+    top: 70px;
+
+}
+
+#table2 {
+    position: absolute;
+    left: 10px;
+    top:5px;
+}
+
+#table2 td{
+    height: 25px;
 }
 
 </style>
@@ -51,7 +99,7 @@ body{
 
         <button class="ajout">Ajouter</button>
 
-        <table>
+        <table >
             <thead>
                 <tr>
                     <th>Id</th>
@@ -61,7 +109,7 @@ body{
                 </tr>
             </thead>
 
-            <tbody>
+            <tbody id="table1">
                 <tr>
                     <th>1</th>
                     <td>47</td>
@@ -69,6 +117,18 @@ body{
                     <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
                 </tr>
 
+                <tr>
+                    <th>2</th>
+                    <td>51</td>
+                    <td>Moyen</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>51</td>
+                    <td>Moyen</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
                 <tr>
                     <th>2</th>
                     <td>51</td>
@@ -83,11 +143,11 @@ body{
         <form action="#" method="POST"></form>
         <h2>Ajouter nouvelle place</h2>
         <div id="input">
-            <table>
+            <table id="table2">
 
                 <tr>
                     <td> Emplacement : </td>
-                    <td> <input name="Emplacement" required type="number" min="0"></td>
+                    <td> <input name="Emplacement" placeholder="Numéro de l'emplacement" required type="number" min="0" step="1"></td>
                 </tr>
                 <tr>
                     <td> Taille : </td>
