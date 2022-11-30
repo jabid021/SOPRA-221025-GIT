@@ -1,0 +1,92 @@
+<style>
+
+  #conteneur
+  {
+    display:flex;
+
+  }
+#bulle1
+{
+  display:flex;
+  width:450px;
+  height:250px;
+  border-radius:50%;
+  border:solid black 2px;
+  justify-content:center;
+  align-items:center;
+}
+#bulle2
+{
+  justify-content:center;
+  align-items:center;
+  display:flex;
+  width:450px;
+  height:250px;
+  border-radius:50%;
+  border:solid black 2px;
+}
+</style>
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<br><br><br>
+<div id="conteneur" >
+  <div id="bulle1"></div>
+
+  <div id="bulle2"></div>
+</div>
+
+<audio id="omae" src="omae.mp3"></audio>
+<audio id="nani" src="nani.mp3"></audio>
+
+<script>
+
+
+setTimeout(function(){omae.play();},2000);
+
+
+
+bulle1.innerHTML="Omae wa mou shindeiru";
+
+var decompte=setTimeout(bulle,5000);
+//clearTimeout(decompte);
+
+var changementColorInterval=setInterval(sapinColor,500);
+setTimeout(stop,8000);
+
+function stop()
+{
+  clearInterval(changementColorInterval);
+  sapin.style.color="white";
+}
+
+var color="red";
+
+function sapinColor()
+{
+  if(color=="red")
+  {
+    color="green";
+  }
+  else
+  {
+    color="red";
+  }
+  sapin.style.color=color;
+}
+
+
+function bulle()
+{
+nani.play();
+bulle1.innerHTML="";
+bulle2.innerHTML="NANI ?!";
+bulle2.style.color="red";
+
+setTimeout(function()
+  {
+    bulle2.style.fontSize="30px";
+  },2000);
+}
+
+
+</script>

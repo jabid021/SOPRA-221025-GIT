@@ -1,0 +1,75 @@
+
+<h1 id="message">Ce paragraphe s'autodetruira dans 5secondes...</h1>
+
+
+
+
+<p id="sapin">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+
+<script>
+
+var color="red";
+
+var chronoSapin=setInterval(changeColor,400);
+
+
+setTimeout(function()
+            {
+                clearInterval(chronoSapin);
+                sapin.style.color="black";
+            },10000);
+//Meme chose que
+
+/*setTimeout(stopSapin,10000);
+
+function stopSapin()
+{
+  clearInterval(chronoSapin);
+  sapin.style.color="black";
+}*/
+
+function changeColor()
+{
+  if(color=="red")
+  {
+    color="green";
+  }
+  else
+  {
+    color="red";
+  }
+  sapin.style.color=color;
+}
+
+
+
+
+
+var secondes=5;
+var bombe=setTimeout(exploser,5000);
+var chrono=setInterval(decompte,1000);
+
+
+//clearTimeout(bombe);
+
+function decompte()
+{
+    secondes--;
+    message.innerHTML="Ce paragraphe s'autodetruira dans "+secondes+"secondes...";
+}
+
+
+function exploser()
+{
+  clearInterval(chrono);
+  message.style.color="red";
+  message.innerHTML="BOUM!";
+
+}
+
+
+
+
+</script>

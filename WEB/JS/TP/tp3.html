@@ -16,4 +16,40 @@
 
 <script>
 
+var choix = prompt("Quel type d'element ? id/class/tag");
+var value = prompt("Quelle couleur ?");
+
+
+switch(choix)
+{
+  case "id" : changeId();break;
+  case "class" : changeClass();break;
+  case "tag" : changeTag();break;
+  default : alert("Cette option n'existe pas");
+}
+
+
+function changeId()
+{
+  paragPrinci.style.color=value;
+}
+
+function changeClass()
+{
+  var balises = document.getElementsByClassName("secondaire");
+  for(b of balises)
+  {
+    b.style.setProperty("color",value);
+  }
+}
+
+function changeTag()
+{
+  var balises = document.getElementsByTagName("p");
+  for(b of balises)
+  {
+    b.style.setProperty("color",value);
+  }
+}
+
 </script>
