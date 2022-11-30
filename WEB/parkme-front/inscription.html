@@ -20,20 +20,33 @@ display:flex;
 justify-content:center;
 }
 body{
-background-color:#F4EFE7;
+background-color:#c0C8F8;
 }
 
 
 
   footer{
 	display:flex;
-	flex-direction : row;
+	flex-direction : column;
 	margin-top :25px;
 	width : 100%;
-	//background-color:#432BD4;
+	/* background-color:#432BD4; */
 	}
-
-
+  #btnretour
+  {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #btn1
+  {
+    width: 100%;
+    margin-top: 10px;
+  }
+  #btn2
+  {
+    width: 100%;
+    margin-top: 10px;
+  }
 
   </style>
 
@@ -93,9 +106,17 @@ background-color:#F4EFE7;
 	  <footer>
 	
 		 <form action="#" method="POST">
-		   <input class="btn btn-primary" type ="submit" value="S'inscrire" />
-		   <input class="btn btn-secondary" type ="reset" />
-		  
+		   <input id="btn1" class="btn btn-primary" type ="submit" value="S'inscrire" />
+		   <input id="btn2" class="btn btn-warning" type ="reset" />
+       <a href="index.html">
+        <input
+          id="btnretour"
+          class="btn btn-secondary"
+          type="button" value="Retour">
+        
+          
+        </button>
+      </a>
 		  </form>
 		  
 		  
