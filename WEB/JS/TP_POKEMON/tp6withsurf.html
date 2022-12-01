@@ -1,0 +1,45 @@
+<style>
+  body
+  {
+    background-image : url("assets2/img/water.png");
+    background-repeat: repeat;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+  }
+  #grass
+  {
+    display:none;
+    width:700px;
+    height:700px;
+    background-image : url("assets2/img/Grass.png")
+  }
+
+  #pokemonAffiche
+  {
+    position:relative;
+    top:0;
+    left:0;
+    display:inline-block;
+  }
+
+</style>
+
+
+<script defer src="pokemon.js" charset="utf-8"></script>
+
+<audio id="theme" volume="0.05" src="assets2/audio/theme.mp3"> </audio>
+
+<title>Pokemon, now with surfing!</title>
+<div id="formStart">
+  <input id="inputName" type="text" placeholder="Pikachu"><br><br>
+  <input checked id="radioPokemon" type="radio" name="choixPokemon">Pikachu <input type="radio" name="choixPokemon"> CoinCoin
+  <br><br>
+  <input disabled id="btnStart" type="button" value="Start !">
+</div>
+
+<div id="grass">
+  <div id="pokemonAffiche"><img id="imgPokemon" src=""></div>
+</div>
