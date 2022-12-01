@@ -10,6 +10,8 @@
   var pokemon="pikachu";
   var img="Down.png";
 
+  imgPikachu.setAttribute("src","assets/img/"+pokemon+img);
+
   function lancerAventure()
   {
 
