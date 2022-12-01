@@ -1,0 +1,180 @@
+<style>
+
+body{
+    background-color: #F4F0E7;
+}
+
+h1{
+    margin: 0;
+}
+.ajout{
+    background-color: #53AE58;
+    height: 35px;
+    width: 70px;
+    color:white;
+    border: solid 1px #53AE58 ;
+    border-radius: 10px; 
+    margin: 5px 0px;
+}
+
+.supp{
+    background-color: #D13B47;
+    height: 30px;
+    width: 70px;
+    color:white;
+    border: solid 1px #D13B47 ;
+    border-radius: 10px;
+    margin-left: 5px; 
+}
+.modif{
+    background-color: #FEBC1D;
+    height: 30px;
+    width: 70px;
+    border: solid 1px #FEBC1D ;
+    border-radius: 10px; 
+}
+#input{
+    background-color: white;
+}
+
+#list table{
+    width: 100%;
+    text-align: left;
+}
+
+#table1 tr:nth-of-type(odd){
+    background-color: #E8E3DB;
+    
+}
+
+#table1 tr{
+height: 40px;
+}
+
+#input{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 130px;
+    box-shadow: 0px 2px 9px;
+}
+
+#input button{
+   position:absolute;
+    width:90%;
+    top: 70px;
+
+}
+
+#table2 {
+    position: absolute;
+    left: 10px;
+    top:5px;
+}
+
+#table2 td{
+    height: 25px;
+}
+
+</style>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+
+<body>
+    <div id="list">
+        <h1>Liste des places</h1>
+
+        <button class="ajout">Ajouter</button>
+
+        <table >
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Emplacement</th>
+                    <th>Taille</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody id="table1">
+                <tr>
+                    <th>1</th>
+                    <td>47</td>
+                    <td>Grand</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
+
+                <tr>
+                    <th>2</th>
+                    <td>51</td>
+                    <td>Moyen</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>51</td>
+                    <td>Moyen</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
+                <tr>
+                    <th>2</th>
+                    <td>51</td>
+                    <td>Moyen</td>
+                    <td><button class="modif">Modifier</button><button class="supp">Supprimer</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="formulaire">
+        <form action="#" method="POST"></form>
+        <h2>Ajouter nouvelle place</h2>
+        <div id="input">
+            <table id="table2">
+
+                <tr>
+                    <td> Emplacement : </td>
+                    <td> <input name="Emplacement" placeholder="Numéro de l'emplacement" required type="number" min="0" step="1"></td>
+                </tr>
+                <tr>
+                    <td> Taille : </td>
+                    <td>
+                        <select>
+                            <option value="1">Grand</option>
+                            <option value="2">Moyen</option>
+                            <option value="3">Petit</option>
+                        </select>
+
+                    </td>
+                </tr>
+            </table>
+
+            <input type="hidden" name="mode" value="insert">
+
+            <button class="ajout">Ajouter</button>
+
+        </div>
+        </form>
+
+    </div>
+
+
+
+</body>
+
+
+
+</html>
