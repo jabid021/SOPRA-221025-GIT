@@ -1,0 +1,60 @@
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+
+
+<h1 class="important">Titre</h1>
+<p id="p1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p class="important"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+<script>
+
+
+$(document).ready(function()
+{
+
+  //p1.style.color="red";
+  //document.getElementById("p1").style.color="red";
+  $("#p1").css("color","red");
+
+  /*var pointeurs = document.getElementsByClassName("important");
+  for(p of pointeurs)
+  {
+    p.style.color="blue";
+  }*/
+  $(".important").css("color","blue");
+  $("p").css("color","green");
+
+//  p1.onclick=function(){};
+//  p1.onclick=demoClick;
+
+  $("#p1").click(function(){});
+  $("#p1").click(demoClick);
+
+  //p1.innerHTML="Nouveau p";
+  $("#p1").html("Nouveau p");
+
+  p1.style.display="none";
+  $("#p1").hide();
+  $("#p1").show();
+
+function demoClick(){}
+});
+
+
+/*
+
+$.ajax("https://www.ajc-formation.fr/post/resultSearch.php", {
+				type: "POST",
+				data: {
+
+					texte: $( "#searchText" ).val()
+					},
+				success: function (resp) {
+					$('#result-search').html(resp);
+					$('#result-search').show();
+					}
+				});
+
+	   }
+
+*/
+</script>

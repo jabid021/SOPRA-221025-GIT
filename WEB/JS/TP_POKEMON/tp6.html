@@ -27,10 +27,16 @@
 </style>
 
 
-<script src="pikachu.js" charset="utf-8"></script>
+<script defer src="pikachu.js" charset="utf-8"></script>
+
+<audio id="theme" volume="0.05" src="assets/audio/theme.mp3"> </audio>
+
 
 <div id="formStart">
-  <input id="inputName" type="text" placeholder="pikachu"><input id="btnStart" type="button" value="Start !">
+  <input id="inputName" type="text" placeholder="pikachu"><br><br>
+  <input checked id="radioPikachu" type="radio" name="choixPokemon">Pikachu  <input type="radio" name="choixPokemon"> CoinCoin
+  <br><br>
+  <input disabled id="btnStart" type="button" value="Start !">
 </div>
 
 <div id="grass">
