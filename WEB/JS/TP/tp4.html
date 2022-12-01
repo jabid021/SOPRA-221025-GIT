@@ -1,5 +1,5 @@
 <input type="button" value="Play" id="btnPlay">
-<input type="button" value="Pause" id="btnPause">
+<input type="button" value="Pause" id="btnPause" disabled >
 
 
 <h1 id="chrono">00:00</h1>
@@ -10,6 +10,25 @@
 
 var min=0;
 var sec=0;
+var timer;
+
+btnPlay.onclick=function()
+{
+    timer=setInterval(changeChrono,1000);
+    btnPlay.disabled=true;
+    btnPause.disabled=false;
+};
+
+btnPause.onclick=stopGame;
+
+
+
+function stopGame()
+{
+  clearInterval(timer);
+  btnPlay.disabled=false;
+  btnPause.disabled=true;
+}
 
 //Play doit lancer toutes les x secondes la fonction changeChrono
 //Pause doit stop ce timer
@@ -24,10 +43,20 @@ function changeChrono()
   //Calcul de la nouvelle minute:seconde
   sec++;
 
+  if(sec==60)
+  {
+    sec=0;
+    min++;
+    if(min==60)
+    {
+      min=0;
+    }
+  }
+
   minAffiche = (min<10) ? "0"+min : ""+min;
   secAffiche = (sec<10) ? "0"+sec : ""+sec;
   //replace le texte dans le h1 par minAffiche+":"+secAffiche
-
+  chrono.innerHTML=minAffiche+":"+secAffiche;
 }
 
 </script>
