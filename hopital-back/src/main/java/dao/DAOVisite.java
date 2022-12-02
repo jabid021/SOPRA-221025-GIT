@@ -114,7 +114,7 @@ public class DAOVisite implements IDAO<Visite, Integer> {
 	}
 
 	@Override
-	public Visite insert(Visite v) {
+	public void insert(Visite v) {
 
         try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -135,7 +135,6 @@ public class DAOVisite implements IDAO<Visite, Integer> {
 			e.printStackTrace();
 		}
         
-		return v;
 	}
 
 	@Override

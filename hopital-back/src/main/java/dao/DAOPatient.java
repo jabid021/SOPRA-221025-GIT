@@ -70,7 +70,7 @@ public class DAOPatient implements IDAO<Patient, Integer>{
 	}
 
 	@Override
-	public Patient insert(Patient p) {
+	public void insert(Patient p) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
@@ -86,7 +86,6 @@ public class DAOPatient implements IDAO<Patient, Integer>{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-        return p;
 	}
 
 	@Override

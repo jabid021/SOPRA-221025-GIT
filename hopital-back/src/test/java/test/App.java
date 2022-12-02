@@ -189,7 +189,7 @@ public class App {
 				String nom = saisieString("Saisir votre nom");
 
 				p = new Patient(idPatient, nom, prenom);
-				p = daoPatient.insert(p);
+				daoPatient.insert(p);
 			}
 			fileAttente.add(p);
 

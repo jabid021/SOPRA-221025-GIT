@@ -15,7 +15,7 @@
         </dependency>
         
 		<dependency>
-			<groupId>soprajc</groupId>
+			<groupId>formation-sopra</groupId>
 			<artifactId>hopital-back</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
