@@ -1,7 +1,10 @@
-body{rgb(192, 200, 248);}
+body{background-color:rgb(192, 200, 248);}
 
 #menus
 {
   display:flex;
   justify-content:center;
 }
+
+
+#formAjout{display:none;}
