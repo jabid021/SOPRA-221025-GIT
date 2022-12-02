@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -128,7 +130,7 @@
 					<td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam venenatis risus quis accumsan vestibulum. Cras vel purus tortor. Nam porttitor nec est nec tincidunt. Suspendisse sit amet aliquam nisl. Phasellus massa urna, egestas et tempus ut, tincidunt a ante. Cras fermentum enim id purus mollis, a gravida quam ultrices. Nulla hendrerit nisi nec erat semper, rutrum elementum sem lacinia. Cras commodo metus pulvinar, dapibus purus ornare, cursus mauris. Donec ut tempor ex. Morbi faucibus, massa a feugiat ultrices, odio quam interdum ligula, nec pretium ante neque nec ipsum. Vestibulum congue, lectus ut semper venenatis, leo diam vulputate nulla, at fermentum leo lectus et sem. Proin id sapien nec lectus laoreet lobortis a eu ligula. Nunc dictum sem nunc, in pellentesque lacus placerat vitae. Nullam velit urna, blandit eget nisi ac, vestibulum condimentum mauris. </td>
 					<td>1 rue des Huns, 11111 Lespinassière</td>
 					<td align="center">
-						<a href="places.html?id=2"><img src="assets/img/eye.svg" alt="Consulter"></a>
+						<a href="places.html?id=2"><img src="../assets/img/eye.svg" alt="Consulter"></a>
 
 					</td>
 				</tr>
@@ -141,7 +143,7 @@
 					<td>Vous ne trouverez pas de meilleur parking</td>
 					<td>60 Gd Rue Saint-Michel, 31400 Toulouse</td>
 					<td align="center">
-						<a href="places.html?id=2"><img src="assets/img/eye.svg"></a>
+						<a href="places.html?id=2"><img src="../assets/img/eye.svg"></a>
 					</td>
 				</tr>
 			</tbody>

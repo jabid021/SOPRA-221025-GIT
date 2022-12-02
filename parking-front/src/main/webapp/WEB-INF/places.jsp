@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <style>
 
 body{
@@ -147,7 +149,7 @@ height: 40px;
 
                 <tr>
                     <td> Emplacement : </td>
-                    <td> <input name="Emplacement" placeholder="NumÃ©ro de l'emplacement" required type="number" min="0" step="1"></td>
+                    <td> <input name="Emplacement" placeholder="Numéro de l'emplacement" required type="number" min="0" step="1"></td>
                 </tr>
                 <tr>
                     <td> Taille : </td>
