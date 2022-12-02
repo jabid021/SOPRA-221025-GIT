@@ -21,15 +21,14 @@
 
 
 	<c:choose>
-<!--  ELSE iF  -->
 		<c:when test="${visites.size()==0}">
 			<div>Pas de visite pour ce patient</div>
 		</c:when>
-<!-- ELSE iF  -->
+ 
 		<c:when test="${visites.size()>=10}">
 			<div>Beaucoup de visites !</div>
 		</c:when>
-<!-- ELSE  -->
+
 		<c:otherwise>
 			<c:forEach var="v" items="${visites}">
 				<div>${v.id},${v.medecin}- ${v.prix} euros - ${v.salle}</div>
