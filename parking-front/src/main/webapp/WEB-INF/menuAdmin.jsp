@@ -9,6 +9,7 @@
     <ul>
       <li><a href="compte">Gestion des comptes</a></li>
       <li><a href="parking">Gestion des parkings</a></li>
+      <li><a href="home?disconnect">Se deconnecter</a></li>
     </ul>
   </nav>
 </div>
