@@ -1,5 +1,24 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+	crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<title>Gestion des stagiaires</title>
+</head>
+<body>
+
 
 
 <div id="content">
@@ -19,29 +38,21 @@
            </tr>
        </thead>
        <tbody>
-         <tr>
-           <td>1</td>
-           <td>Abid</td>
-           <td>Jordan</td>
-           <td>jordanabid@gmail.com</td>
-           <td>1 - DIS-399-SOPRA-JAVA</td>
+       
+       <c:forEach items="${stagiaires}" var="stagiaire">
+        <tr>
+           <td>${stagiaire.id}</td>
+           <td>${stagiaire.nom}</td>
+           <td>${stagiaire.prenom}</td>
+           <td>${stagiaire.email}</td>
+           <td>${stagiaire.filiere.id} - ${stagiaire.filiere.libelle}</td>
            <td>
-             <a href="updateStagiaire.html?id=1"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-             <input type="button" class ="btn btn-danger" value="Supprimer">
+             <a href="stagiaire?id=${stagiaire.id}"><input type="button" class ="btn btn-warning" value="Modifier"></a>
+            <a href="stagiaire?id=${stagiaire.id}&delete"> <input type="button" class ="btn btn-danger" value="Supprimer"></a>
            </td>
          </tr>
-
-         <tr>
-           <td>2</td>
-           <td>Doe</td>
-           <td>John</td>
-           <td>jdoe@gmail.com</td>
-           <td>1 - DIS-399-SOPRA-JAVA</td>
-           <td>
-             <a href="updateStagiaire.html?id=2"><input type="button" class ="btn btn-warning" value="Modifier"></a>
-             <input type="button" class ="btn btn-danger" value="Supprimer">
-           </td>
-         </tr>
+       
+       </c:forEach>
        </tbody>
      </table>
 
@@ -58,13 +69,22 @@
             Email :<input name="email" type="email" placeholder="Saisir votre email"><br>
             Filiere
               <select name="filiere">
-                  <option value="1" >1 - DIS-399-SOPRA-JAVA</option>
+              <c:forEach items="${filieres}" var="f">
+              	 <option value="${f.id}" >${f.id} - ${f.libelle}</option>
+              </c:forEach>
+                 
               </select><br>
               <input class ="btn btn-success" type="submit" value="Ajouter">
             </form>
         </div>
 
 </div>
+
+
+</body>
+</html>
+
+
 
 <script>
 
