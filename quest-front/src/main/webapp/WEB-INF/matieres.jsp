@@ -56,7 +56,6 @@
      <div id="addFormMatiere" class="formAjout">
             <h3>Ajouter Matiere</h3>
             <form action="matiere" method="post">
-            <input type="hidden" name="mode" value="insert">
             Libelle :<input name="libelle" type="text" placeholder="Saisir le libelle"><br>
             Code Quest :<input name="quest" type="number" placeholder="Saisir le code Quest"><br>
             <input class ="btn btn-success" type="submit" value="Ajouter">

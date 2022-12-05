@@ -18,7 +18,6 @@
 
   <h3>Modifier Filiere ${filiere.id}</h3>
   <form action="filiere" method="post">
-  	<input type="hidden" name="mode" value="update">
   	<input type="hidden" name="id" value="${filiere.id}">
   	Libelle :<input value="${filiere.libelle}" name="libelle" type="text" placeholder="Saisir le libelle"><br>
 	Debut :<input value="${filiere.debut}" name="debut" type="date"><br>

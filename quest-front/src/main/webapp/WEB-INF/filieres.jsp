@@ -63,7 +63,7 @@
 		<div id="addFormFiliere" class="formAjout">
 			<h3>Ajouter Filiere</h3>
 			<form action="filiere" method="post">
-				<input type="hidden" name="mode" value="insert"> Libelle :<input
+				 Libelle :<input
 					name="libelle" type="text" placeholder="Saisir le libelle"><br>
 				Debut :<input name="debut" type="date"><br> Fin :<input
 					name="fin" type="date"><br> <input

@@ -23,7 +23,7 @@ public class MatiereController extends HttpServlet {
 			
 			List<Matiere> matieres = daoM.findAll();
 			request.setAttribute("matieres", matieres);
-			this.getServletContext().getRequestDispatcher("/matieres.jsp").forward(request, response);	
+			this.getServletContext().getRequestDispatcher("/WEB-INF/matieres.jsp").forward(request, response);	
 		}
 		else 
 		{
@@ -32,7 +32,7 @@ public class MatiereController extends HttpServlet {
 				int id = Integer.parseInt(request.getParameter("id"));
 				Matiere m = daoM.findById(id);
 				request.setAttribute("matiere", m);
-				this.getServletContext().getRequestDispatcher("/updateMatiere.jsp").forward(request, response);	
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateMatiere.jsp").forward(request, response);	
 			}
 			else {}
 		}

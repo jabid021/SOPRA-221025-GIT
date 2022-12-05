@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,7 +26,7 @@ public class FiliereController extends HttpServlet {
 			
 			List<Filiere> filieres = daoF.findAll();
 			request.setAttribute("filieres", filieres);
-			this.getServletContext().getRequestDispatcher("/filieres.jsp").forward(request, response);	
+			this.getServletContext().getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);	
 		}
 		else 
 		{
@@ -36,10 +37,15 @@ public class FiliereController extends HttpServlet {
 				int id = Integer.parseInt(request.getParameter("id"));
 				Filiere f = daoF.findById(id);
 				request.setAttribute("filiere", f);
-				this.getServletContext().getRequestDispatcher("/updateFiliere.jsp").forward(request, response);	
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateFiliere.jsp").forward(request, response);	
 			}
 			//param id + delete => delete
-			else {}
+			else 
+			{
+				int id = Integer.parseInt(request.getParameter("id"));
+				daoF.delete(id);
+				response.sendRedirect("filiere");
+			}
 		}
 	
 	
@@ -47,14 +53,32 @@ public class FiliereController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Si pas d'id en param => insert
+		
+		DAOFiliere daoF = new DAOFiliere();
+		
 		if(request.getParameter("id")==null) 
 		{
+			String libelle = request.getParameter("libelle");
+			String debut = request.getParameter("debut");
+			String fin = request.getParameter("fin");
+			Filiere f = new Filiere(libelle, LocalDate.parse(debut), LocalDate.parse(fin));
 			
+			daoF.insert(f);	
+			response.sendRedirect("filiere");
+
 		}
 		//update"
 		else 
 		{
-			
+			int id = Integer.parseInt(request.getParameter("id"));
+			String libelle = request.getParameter("libelle");
+			String debut = request.getParameter("debut");
+			String fin = request.getParameter("fin");
+			Filiere f = new Filiere(id,libelle, LocalDate.parse(debut), LocalDate.parse(fin));
+		
+			daoF.update(f);
+			response.sendRedirect("filiere");
+
 		}
 	}
 

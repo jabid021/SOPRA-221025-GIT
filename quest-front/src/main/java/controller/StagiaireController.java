@@ -29,7 +29,7 @@ public class StagiaireController extends HttpServlet {
 			List<Filiere> filieres = daoF.findAll();
 			request.setAttribute("stagiaires", stagiaires);
 			request.setAttribute("filieres", filieres);
-			this.getServletContext().getRequestDispatcher("/stagiaires.jsp").forward(request, response);	
+			this.getServletContext().getRequestDispatcher("/WEB-INF/stagiaires.jsp").forward(request, response);	
 		}
 		else 
 		{
@@ -40,22 +40,49 @@ public class StagiaireController extends HttpServlet {
 				List<Filiere> filieres = daoF.findAll();
 				request.setAttribute("stagiaire", s);
 				request.setAttribute("filieres", filieres);
-				this.getServletContext().getRequestDispatcher("/updateStagiaire.jsp").forward(request, response);	
+				this.getServletContext().getRequestDispatcher("/WEB-INF/updateStagiaire.jsp").forward(request, response);	
 			}
-			else {}
+			else 
+			{
+				int id = Integer.parseInt(request.getParameter("id"));
+				daoS.delete(id);
+				response.sendRedirect("stagiaire");
+			}
 		}
 	
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOStagiaire daoS = new DAOStagiaire();
+		DAOFiliere daoF = new DAOFiliere();
 		if(request.getParameter("id")==null) 
 		{
 			
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			int idFiliere =Integer.parseInt(request.getParameter("filiere"));
+			
+			Filiere f = daoF.findById(idFiliere);
+			
+			Stagiaire s = new Stagiaire(nom, prenom, email, f);
+			daoS.insert(s);
+			response.sendRedirect("stagiaire");
 		}
 		else 
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			String nom = request.getParameter("nom");
+			String prenom = request.getParameter("prenom");
+			String email = request.getParameter("email");
+			int idFiliere =Integer.parseInt(request.getParameter("filiere"));
 			
+			Filiere f = daoF.findById(idFiliere);
+			
+			Stagiaire s = new Stagiaire(id,nom, prenom, email, f);
+			daoS.update(s);
+			response.sendRedirect("stagiaire");
 		}
 	}
 

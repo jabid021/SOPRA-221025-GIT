@@ -63,7 +63,6 @@
      <div id="addFormStagiaire" class="formAjout">
             <h3>Ajouter Stagiaire</h3>
             <form action="stagiaire" method="post">
-            <input type="hidden" name="mode" value="insert">
             Nom :<input name="nom" type="text" placeholder="Saisir votre nom"><br>
             Prenom :<input name="prenom" type="text" placeholder="Saisir votre prenm"><br>
             Email :<input name="email" type="email" placeholder="Saisir votre email"><br>

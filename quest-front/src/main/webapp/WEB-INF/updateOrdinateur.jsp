@@ -18,17 +18,18 @@
 
 <div id="content">
 
-  <h3>Modifier Ordinateur 1</h3>
+  <h3>Modifier Ordinateur ${ordinateur.id}</h3>
   <form action="ordinateur" method="post">
-  <input type="hidden" name="mode" value="update">
-  <input type="hidden" name="id" value="1">
-  Marque :<input value="Asus" name="marque" type="text" placeholder="Saisir votre marque"><br>
-  RAM :<input value="8" name="ram" type="number" placeholder="Saisir votre RAM"><br>
+  <input type="hidden" name="id" value="${ordinateur.id}">
+  Marque :<input value="${ordinateur.marque}" name="marque" type="text" placeholder="Saisir votre marque"><br>
+  RAM :<input value="${ordinateur.ram}" name="ram" type="number" placeholder="Saisir votre RAM"><br>
   Stagiaire
     <select name="stagiaire">
-        <option value="1" >1 - Jordan Abid</option>
-        <option value="2" >2 - John Doe</option>
-    </select><br>
+              <c:forEach items="${stagiaires}" var="stagiaire">
+              <option  <c:if test="${stagiaire.id==ordinateur.stagiaire.id}">selected</c:if>  value="${stagiaire.id}" >${stagiaire.id} - ${stagiaire.prenom} ${stagiaire.nom}</option>
+              
+              </c:forEach>
+              </select><br>
 
     <input class ="btn btn-warning" type="submit" value="Modifier">
     <a href="ordinateur"><input type="button" class ="btn btn-info" value="Retour"></a>
