@@ -34,20 +34,37 @@ public class MatiereController extends HttpServlet {
 				request.setAttribute("matiere", m);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateMatiere.jsp").forward(request, response);	
 			}
-			else {}
+			else 
+			{
+				int id = Integer.parseInt(request.getParameter("id"));
+				daoM.delete(id);
+				response.sendRedirect("matiere");
+			}
 		}
 	
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		DAOMatiere daoM = new DAOMatiere();
+		
 		if(request.getParameter("id")==null) 
 		{
-			
+			String libelle = request.getParameter("libelle");
+			int quest = Integer.parseInt(request.getParameter("quest"));
+			Matiere m = new Matiere(libelle, quest);
+			daoM.insert(m);
+			response.sendRedirect("matiere");
 		}
 		else 
 		{
-			
+			int id = Integer.parseInt(request.getParameter("id"));
+			String libelle = request.getParameter("libelle");
+			int quest = Integer.parseInt(request.getParameter("quest"));
+			Matiere m = new Matiere(id,libelle, quest);
+			daoM.update(m);
+			response.sendRedirect("matiere");
 		}
 	}
 

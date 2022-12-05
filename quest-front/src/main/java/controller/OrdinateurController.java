@@ -41,20 +41,42 @@ public class OrdinateurController extends HttpServlet {
 				request.setAttribute("stagiaires", stagiaires);
 				this.getServletContext().getRequestDispatcher("/WEB-INF/updateOrdinateur.jsp").forward(request, response);	
 			}
-			else {}
+			else {
+				int id = Integer.parseInt(request.getParameter("id"));
+				daoO.delete(id);
+				response.sendRedirect("ordinateur");
+			}
 		}
 	
 	
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAOOrdinateur daoO = new DAOOrdinateur();
+		DAOStagiaire daoS = new DAOStagiaire();
+		
 		if(request.getParameter("id")==null) 
 		{
+			String marque = request.getParameter("marque");
+			int ram = Integer.parseInt(request.getParameter("ram"));
+			int idStagiaire= Integer.parseInt(request.getParameter("stagiaire"));
+			Stagiaire s = daoS.findById(idStagiaire);
 			
+			Ordinateur o = new Ordinateur(marque, ram,s);
+			daoO.insert(o);
+			response.sendRedirect("ordinateur");
 		}
 		else 
 		{
+			int id = Integer.parseInt(request.getParameter("id"));
+			String marque = request.getParameter("marque");
+			int ram = Integer.parseInt(request.getParameter("ram"));
+			int idStagiaire= Integer.parseInt(request.getParameter("stagiaire"));
+			Stagiaire s = daoS.findById(idStagiaire);
 			
+			Ordinateur o = new Ordinateur(id,marque, ram,s);
+			daoO.update(o);
+			response.sendRedirect("ordinateur");
 		}
 	}
 
