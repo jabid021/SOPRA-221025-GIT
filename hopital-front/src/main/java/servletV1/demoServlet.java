@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAOPatient;
+import dao.jdbc.DAOPatientJDBC;
 import model.Patient;
 
 @WebServlet("/demo")
@@ -18,7 +18,7 @@ public class demoServlet extends HttpServlet {
      
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DAOPatient daoP = new DAOPatient();
+		DAOPatientJDBC daoP = new DAOPatientJDBC();
 		List<Patient> patients = daoP.findAll();
 		
 		response.getWriter().println("<html>");

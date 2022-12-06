@@ -12,10 +12,9 @@
 <body>
 
 <%
-
 int id = Integer.parseInt(request.getParameter("id"));
 
-DAOPatient daoP = new DAOPatient();
+DAOPatientJDBC daoP = new DAOPatientJDBC();
 
 Patient p = daoP.findById(id);
 
@@ -29,7 +28,6 @@ else
 {
 out.println("<span>Nom : "+p.getNom()+" - Prenom : "+p.getPrenom()+"<span>");
 }
-
 %>
 
 	

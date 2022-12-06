@@ -8,7 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAOCompte;
+import context.Singleton;
+import dao.IDAOCompte;
 import model.Compte;
 import model.Medecin;
 import model.Secretaire;
@@ -24,7 +25,7 @@ public class HomeController extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DAOCompte daoC = new DAOCompte();
+		IDAOCompte daoC = Singleton.getInstance().getDaoCompte();
 		
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");

@@ -22,11 +22,11 @@
 		</tr>
 
 		<%
-		DAOPatient daoP = new DAOPatient();
-		List<Patient> patients = daoP.findAll();
-		for (Patient p : patients) {
+		DAOPatientJDBC daoP = new DAOPatientJDBC();
+				List<Patient> patients = daoP.findAll();
+				for (Patient p : patients) {
 			out.println("<tr><td>" + p.getId() + "</td><td>" + p.getNom() + "</td><td>" + p.getPrenom() + "</td></tr>");
-		}
+				}
 		%>
 
 	</table>

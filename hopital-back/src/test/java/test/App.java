@@ -5,28 +5,31 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-import dao.DAOCompte;
-import dao.DAOPatient;
-import dao.DAOVisite;
+import context.Singleton;
+import dao.IDAOCompte;
+import dao.IDAOPatient;
+import dao.IDAOVisite;
 import model.Compte;
 import model.Medecin;
 import model.Patient;
 import model.Secretaire;
 import model.Visite;
 
+
 public class App {
 
-	static LinkedList<Patient> fileAttente = new LinkedList();
 	static Compte connected;
-	static DAOCompte daoCompte = new DAOCompte();
-	static DAOPatient daoPatient = new DAOPatient();
-	static DAOVisite daoVisite = new DAOVisite();
 	static boolean isPause = false;
+	
+	static IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+	static IDAOPatient daoPatient = Singleton.getInstance().getDaoPatient();
+	static IDAOVisite daoVisite = Singleton.getInstance().getDaoVisite();
+	
+	
 
 	public static String saisieString(String msg) {
 		Scanner sc = new Scanner(System.in);
@@ -162,7 +165,7 @@ public class App {
 			break;
 		case 2:
 			fileAttente();
-			Patient p = fileAttente.peek();
+			Patient p = Singleton.getInstance().getFileAttente().peek();
 			System.out.println("Le prochain patient est : " + p);
 			break;
 		case 3:
@@ -191,14 +194,14 @@ public class App {
 				p = new Patient(idPatient, nom, prenom);
 				daoPatient.insert(p);
 			}
-			fileAttente.add(p);
+			Singleton.getInstance().getFileAttente().add(p);
 
 		} else {
 			Medecin medecin= (Medecin) connected;
 			
 			// Retirer le premier patient de la file, lui creer une visite
-			if (!fileAttente.isEmpty()) {
-				Patient p = fileAttente.poll();
+			if (!Singleton.getInstance().getFileAttente().isEmpty()) {
+				Patient p = Singleton.getInstance().getFileAttente().poll();
 				Visite visite = new Visite(p, medecin);
 				medecin.getVisites().add(visite);
 			}
@@ -224,7 +227,7 @@ public class App {
 
 	public static void fileAttente() {
 
-		for (Patient p : fileAttente) {
+		for (Patient p : Singleton.getInstance().getFileAttente()) {
 			System.out.println(p);
 		}
 
@@ -258,26 +261,24 @@ public class App {
 
 		try (FileOutputStream fos = new FileOutputStream(monFichier);
 				ObjectOutputStream oos = new ObjectOutputStream(fos);) {
-			oos.writeObject(fileAttente);
+			oos.writeObject(Singleton.getInstance().getFileAttente());
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		fileAttente.clear();
+		Singleton.getInstance().getFileAttente().clear();
 	}
 
-	public static LinkedList<Patient> chargerFileAttente() {
+	public static void chargerFileAttente() {
 		File monFichier = new File("fileAttente.txt");
 
 		try (FileInputStream fis = new FileInputStream(monFichier);
 				ObjectInputStream ois = new ObjectInputStream(fis);) {
-			fileAttente = (LinkedList<Patient>) ois.readObject();
+			Singleton.getInstance().setFileAttente((LinkedList<Patient>) ois.readObject());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		return fileAttente;
 
 	}
 

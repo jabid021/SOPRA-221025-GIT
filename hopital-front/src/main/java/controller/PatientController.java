@@ -9,8 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAOPatient;
-import dao.DAOVisite;
+import context.Singleton;
+import dao.IDAOPatient;
+import dao.IDAOVisite;
 import model.Patient;
 import model.Visite;
 
@@ -24,7 +25,7 @@ public class PatientController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 
 		//On fait nos traitements pour recup les infos (le patient x)
-		DAOPatient daoP = new DAOPatient();
+		IDAOPatient daoP = Singleton.getInstance().getDaoPatient();
 
 		Patient p = daoP.findById(id);
 		
@@ -39,7 +40,7 @@ public class PatientController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int id = Integer.parseInt(request.getParameter("id"));
-		DAOVisite daoV = new DAOVisite();
+		IDAOVisite daoV = Singleton.getInstance().getDaoVisite();
 		
 		List<Visite> listVisites  = daoV.findAllByIdPatient(id);
 		
