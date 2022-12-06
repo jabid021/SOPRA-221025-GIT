@@ -4,15 +4,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 @Entity
-public class Personne {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name="person")
+public abstract class Personne {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String prenom;
-	private String nom;
+	protected Integer id;
+	protected String prenom;
+	protected String nom;
+	protected Adresse adresse;
 	
 	public Personne() {
 	}
@@ -44,6 +50,15 @@ public class Personne {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+
+	public Adresse getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(Adresse adresse) {
+		this.adresse = adresse;
 	}
 
 	@Override
