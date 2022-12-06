@@ -1,36 +1,54 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 //Obligatoire
 @Entity
-@Table(name="wizard")
-public class Sorcier {
+@Table(name="wizard", uniqueConstraints=@UniqueConstraint(columnNames = { "nom","firstname"}) )
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public abstract class Sorcier {
 	
 	//Obligatoire
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	private String nom;
+	protected Integer id;
 	
-	@Column(name="firstname")
-	private String prenom;
-	private int annee;
+	@Column(columnDefinition = "VARCHAR(35)")
+	protected String nom;
+	
+	@Column(name="firstname",nullable=false,length = 35)
+	protected String prenom;
+	
+	@Embedded
+	protected Stats statistiques;
+	
+	
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name="animal",nullable = false,columnDefinition = "ENUM('Cerf','Coccinelle','Loutre','Chien','Phoenix')")
+	private Patronus patronus;
 	
 	
 	//Obligatoire
 	public Sorcier() {}
 
 
-	public Sorcier(String nom, String prenom, int annee) {
+	public Sorcier(String nom, String prenom,Patronus patronus,Stats statistiques) {
 		this.nom = nom;
 		this.prenom = prenom;
-		this.annee = annee;
+		this.patronus=patronus;
+		this.statistiques=statistiques;
 	}
 
 
@@ -56,20 +74,6 @@ public class Sorcier {
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
-
-
-
-	public int getAnnee() {
-		return annee;
-	}
-
-
-
-	public void setAnnee(int annee) {
-		this.annee = annee;
-	}
-
-
 	
 
 	public Integer getId() {
@@ -83,10 +87,34 @@ public class Sorcier {
 	}
 
 
-	@Override
-	public String toString() {
-		return "Sorcier [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", annee=" + annee + "]";
+	
+	public Patronus getPatronus() {
+		return patronus;
 	}
+
+
+	public void setPatronus(Patronus patronus) {
+		this.patronus = patronus;
+	}
+	
+
+
+
+	public Stats getStatistiques() {
+		return statistiques;
+	}
+
+
+	public void setStatistiques(Stats statistiques) {
+		this.statistiques = statistiques;
+	}
+
+
+	
+
+	
+
+
 
 
 }
