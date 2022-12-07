@@ -33,6 +33,12 @@ public class Professeur extends Sorcier {
 		return "Professeur [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", statistiques=" + statistiques
 				+ ", matiere=" + matiere + "]";
 	}
+
+
+	
+
+
+	
 	
 	
 	

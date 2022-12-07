@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
@@ -11,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -40,6 +45,13 @@ public abstract class Sorcier {
 	@Enumerated(EnumType.STRING)
 	@Column(name="animal",nullable = false,columnDefinition = "ENUM('Cerf','Coccinelle','Loutre','Chien','Phoenix')")
 	private Patronus patronus;
+	
+	
+	@ManyToMany
+	private List<Sort> sorts=new ArrayList();
+	
+	@OneToOne
+	private Baguette baguette;
 	
 	
 	//Obligatoire
@@ -109,6 +121,26 @@ public abstract class Sorcier {
 
 	public void setStatistiques(Stats statistiques) {
 		this.statistiques = statistiques;
+	}
+
+
+	public List<Sort> getSorts() {
+		return sorts;
+	}
+
+
+	public void setSorts(List<Sort> sorts) {
+		this.sorts = sorts;
+	}
+
+
+	public Baguette getBaguette() {
+		return baguette;
+	}
+
+
+	public void setBaguette(Baguette baguette) {
+		this.baguette = baguette;
 	}
 
 

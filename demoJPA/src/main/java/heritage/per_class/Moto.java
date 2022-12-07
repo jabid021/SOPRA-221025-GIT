@@ -2,7 +2,7 @@ package heritage.per_class;
 
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Moto extends Vehicule{
 
 	

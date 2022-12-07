@@ -1,9 +1,11 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("supplier")
 public class Fournisseur extends Personne {
 
 	@Column(name="company",length=30)

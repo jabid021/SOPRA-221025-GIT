@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +14,8 @@ import javax.persistence.UniqueConstraint;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Table(name="person",uniqueConstraints = @UniqueConstraint(columnNames = {"firstname","name","num","street","city","zip"}))
+@Table(name="person",  uniqueConstraints = @UniqueConstraint(columnNames = {"firstname","name","num","street","city","zip"}))
+@DiscriminatorColumn(name="type_personne", columnDefinition = "ENUM('customer','supplier')")
 public abstract class Personne {
 
 	@Id

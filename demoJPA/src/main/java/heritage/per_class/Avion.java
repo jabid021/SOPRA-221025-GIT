@@ -3,7 +3,7 @@ package heritage.per_class;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
-@Entity
+//@Entity
 public class Avion extends Vehicule {
 
 	@Column(nullable=false)

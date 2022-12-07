@@ -3,9 +3,11 @@ package model;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("customer")
 public class Client extends Personne{
 	
 	@Column(columnDefinition = "int(2)")
