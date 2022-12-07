@@ -14,6 +14,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -47,9 +49,17 @@ public abstract class Sorcier {
 	private Patronus patronus;
 	
 	
+	@JoinTable(
+			name="competence",
+			joinColumns = @JoinColumn(name="sorcier"),
+			inverseJoinColumns = @JoinColumn(name="sort"),
+			uniqueConstraints=@UniqueConstraint(columnNames = { "sorcier","sort"})
+			)
 	@ManyToMany
 	private List<Sort> sorts=new ArrayList();
 	
+	
+	@JoinColumn(name="baguette")
 	@OneToOne
 	private Baguette baguette;
 	

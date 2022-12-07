@@ -3,6 +3,7 @@ package model;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -19,6 +20,7 @@ public class Eleve extends Sorcier{
 	//X represente le nomdre d'eleves dans une maison
 	//Y represente le nombre de maison d'un eleve
 	
+	@JoinColumn(name="house")
 	@ManyToOne
 	private Maison maison;
 	
