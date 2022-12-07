@@ -1,6 +1,7 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="wizard", uniqueConstraints=@UniqueConstraint(columnNames = { "nom","firstname"}) )
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_sorcier",columnDefinition = "ENUM('teacher','student')")
 public abstract class Sorcier {
 	
 	//Obligatoire

@@ -1,8 +1,10 @@
 package model;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("teacher")
 public class Professeur extends Sorcier {
 
 	private String matiere;

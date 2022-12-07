@@ -1,11 +1,12 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
 public class Fournisseur extends Personne {
 
-	
+	@Column(name="company",length=30)
 	private String societe;
 	
 	

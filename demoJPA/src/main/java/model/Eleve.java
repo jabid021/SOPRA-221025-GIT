@@ -1,9 +1,11 @@
 package model;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("student")
 public class Eleve extends Sorcier{
 
 	private int annee;
@@ -14,6 +16,7 @@ public class Eleve extends Sorcier{
 	
 	
 	public Eleve() {
+	
 	}
 
 

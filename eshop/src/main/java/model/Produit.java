@@ -1,9 +1,11 @@
 package model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 
 
@@ -13,7 +15,11 @@ public class Produit {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(name="label", nullable = false, length = 50)
 	private String libelle;
+
+	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
 	private double prix;
 	
 	public Produit() {
