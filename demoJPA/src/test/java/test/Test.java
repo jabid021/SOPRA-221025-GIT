@@ -9,6 +9,7 @@ import heritage.joined.Chien;
 import heritage.per_class.Avion;
 import heritage.per_class.Voiture;
 import model.Baguette;
+import model.Competence;
 import model.Eleve;
 import model.Maison;
 import model.Patronus;
@@ -40,16 +41,16 @@ public class Test {
 		
 		Eleve s1 = new Eleve("Potter","Harry",1,Patronus.Cerf,stat1,m1);
 		s1.setBaguette(b1);
-		s1.getSorts().add(spell1);
+	//	s1.getSorts().add(spell1);
 		s1.setRang(1);
 		Eleve s2 = new Eleve("Weasley","Ron",1,Patronus.Chien,new Stats(20,15),m1);
 		Eleve s3 = new Eleve("Granger","Hermione",1,Patronus.Loutre,new Stats(50,50),m1);
-		s3.getSorts().add(spell2);
+		//s3.getSorts().add(spell2);
 		
 		
 		
-		
-
+		Competence comp1 = new Competence(4, s1, spell1);
+		Competence comp2 = new Competence(5, s3, spell2);
 		
 		/*Chien c1 = new Chien("wouf","bichon",true);
 		Chat c2 = new Chat("miaou","ragdoll",8,"toutes les couleurs");
@@ -77,6 +78,8 @@ public class Test {
 		em.persist(spell2);
 		em.persist(p1);
 		em.persist(p2);
+		em.persist(comp1);
+		em.persist(comp2);
 		
 		em.getTransaction().commit();
 		

@@ -49,7 +49,7 @@ public abstract class Sorcier {
 	private Patronus patronus;
 	
 	
-	@JoinTable(
+/*	@JoinTable(
 			name="competence",
 			joinColumns = @JoinColumn(name="sorcier"),
 			inverseJoinColumns = @JoinColumn(name="sort"),
@@ -57,7 +57,7 @@ public abstract class Sorcier {
 			)
 	@ManyToMany
 	private List<Sort> sorts=new ArrayList();
-	
+	*/
 	
 	@JoinColumn(name="baguette")
 	@OneToOne
@@ -134,7 +134,7 @@ public abstract class Sorcier {
 	}
 
 
-	public List<Sort> getSorts() {
+	/*public List<Sort> getSorts() {
 		return sorts;
 	}
 
@@ -142,7 +142,7 @@ public abstract class Sorcier {
 	public void setSorts(List<Sort> sorts) {
 		this.sorts = sorts;
 	}
-
+*/
 
 	public Baguette getBaguette() {
 		return baguette;
