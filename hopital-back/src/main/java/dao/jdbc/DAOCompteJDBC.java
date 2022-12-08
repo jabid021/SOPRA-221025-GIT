@@ -12,9 +12,9 @@ import model.Compte;
 import model.Medecin;
 import model.Secretaire;
 
-public class DAOCompteJDBC implements IDAOCompte {
+public class DAOCompteJDBC {
 
-	@Override
+	/*@Override
 	public Compte findById(Integer id) {
 		Compte c = null;
 		try {
@@ -165,5 +165,5 @@ public class DAOCompteJDBC implements IDAOCompte {
 		}
 		return c;
 	}
-
+*/
 }

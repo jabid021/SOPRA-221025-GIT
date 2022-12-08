@@ -2,38 +2,56 @@ package dao;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
+import context.Singleton;
 import model.Patient;
 
-public class DAOPatient implements IDAOPatient{
+public class DAOPatient implements IDAOPatient {
 
 	@Override
 	public Patient findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Patient patient = em.find(Patient.class, id);
+		em.close();
+		return patient;
 	}
 
 	@Override
 	public List<Patient> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Patient> patients = em.createQuery("from Patient").getResultList();
+		em.close();
+		return patients;
 	}
 
 	@Override
-	public void insert(Patient o) {
-		// TODO Auto-generated method stub
-		
+	public Patient save(Patient p) {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		try 
+		{
+			em.getTransaction().begin();
+			p=em.merge(p);
+			em.getTransaction().commit();
+		}
+		catch(Exception e){e.printStackTrace();}
+		em.close();
+		return p;
 	}
 
 	@Override
-	public void update(Patient o) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+	public void delete(Patient p) {
+	
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		try 
+		{
+			em.getTransaction().begin();
+			p=em.merge(p);
+			em.remove(p);
+			em.getTransaction().commit();
+		}
+		catch(Exception e){e.printStackTrace();}
+		em.close();
 	}
 
 }

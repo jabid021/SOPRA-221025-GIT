@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import context.Singleton;
 import heritage.joined.Chat;
 import heritage.joined.Chien;
 import heritage.per_class.Avion;
@@ -23,7 +24,7 @@ public class Test {
 	public static void demoInsertData() 
 	{
 	
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
+		EntityManagerFactory emf = Singleton.getInstance().getEmf();
 		
 		Professeur p1 = new Professeur("Dumbledore","Albus",Patronus.Phoenix,new Stats(9001,9001),"Metamorphose");
 		Professeur p2 = new Professeur("Severus ","Rogue",Patronus.Coccinelle,new Stats(50,90),"PAS GENTIL");
@@ -127,7 +128,7 @@ public class Test {
 	
 	public static void demoCrud() 
 	{
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
+		EntityManagerFactory emf = Singleton.getInstance().getEmf();
 		
 		
 		Maison m = new Maison("TEST",null);
@@ -172,9 +173,9 @@ public class Test {
 	public static void main(String[] args) {
 	
 		
+		System.out.println(Singleton.getInstance().getDaoSorcier().findAll());
 		
-		
-		demoCrud();
+		//demoCrud();
 		
 	
 	}

@@ -16,9 +16,9 @@ import model.Medecin;
 import model.Patient;
 import model.Visite;
 
-public class DAOVisiteJDBC implements IDAOVisite {
+public class DAOVisiteJDBC  {
 
-	IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
+/*	IDAOCompte daoCompte = Singleton.getInstance().getDaoCompte();
     IDAOPatient daoPatient = Singleton.getInstance().getDaoPatient();
 
 
@@ -152,5 +152,5 @@ public class DAOVisiteJDBC implements IDAOVisite {
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 }

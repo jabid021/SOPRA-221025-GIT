@@ -5,28 +5,28 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import context.Singleton;
-import model.Visite;
+import model.Sorcier;
 
-public class DAOVisite implements IDAOVisite {
+public class DAOSorcier implements IDAOSorcier {
 
 	@Override
-	public Visite findById(Integer id) {
+	public Sorcier findById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		Visite visite = em.find(Visite.class, id);
+		Sorcier sorcier = em.find(Sorcier.class, id);
 		em.close();
-		return visite;
+		return sorcier;
 	}
 
 	@Override
-	public List<Visite> findAll() {
+	public List<Sorcier> findAll() {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		List<Visite> visites = em.createQuery("from Visite").getResultList();
+		List<Sorcier> sorciers = em.createQuery("from Sorcier").getResultList();
 		em.close();
-		return visites;
+		return sorciers;
 	}
 
 	@Override
-	public Visite save(Visite s) {
+	public Sorcier save(Sorcier s) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		try 
 		{
@@ -40,24 +40,18 @@ public class DAOVisite implements IDAOVisite {
 	}
 
 	@Override
-	public void delete(Visite v) {
+	public void delete(Sorcier s) {
 	
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		try 
 		{
 			em.getTransaction().begin();
-			v=em.merge(v);
-			em.remove(v);
+			s=em.merge(s);
+			em.remove(s);
 			em.getTransaction().commit();
 		}
 		catch(Exception e){e.printStackTrace();}
 		em.close();
-	}
-
-	@Override
-	public List<Visite> findAllByIdPatient(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

@@ -2,21 +2,25 @@ package context;
 
 import java.util.LinkedList;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import dao.DAOCompte;
+import dao.DAOPatient;
+import dao.DAOVisite;
 import dao.IDAOCompte;
 import dao.IDAOPatient;
 import dao.IDAOVisite;
-import dao.jdbc.DAOCompteJDBC;
-import dao.jdbc.DAOPatientJDBC;
-import dao.jdbc.DAOVisiteJDBC;
 import model.Patient;
 
 public class Singleton {
 
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("hopital");
 
 	private LinkedList<Patient> fileAttente = new LinkedList();
-	private IDAOCompte daoCompte = new DAOCompteJDBC();
-	private IDAOPatient daoPatient = new DAOPatientJDBC();
-	private IDAOVisite daoVisite = new DAOVisiteJDBC();
+	private IDAOCompte daoCompte = new DAOCompte();
+	private IDAOPatient daoPatient = new DAOPatient();
+	private IDAOVisite daoVisite = new DAOVisite();
 
 
 	private static Singleton instance;
@@ -62,6 +66,16 @@ public class Singleton {
 	}
 	public void setDaoVisite(IDAOVisite daoVisite) {
 		this.daoVisite = daoVisite;
+	}
+
+
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
+
+
+	public void setEmf(EntityManagerFactory emf) {
+		this.emf = emf;
 	}
 
 

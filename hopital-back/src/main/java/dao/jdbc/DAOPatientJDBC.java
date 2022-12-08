@@ -10,9 +10,9 @@ import java.util.List;
 import dao.IDAOPatient;
 import model.Patient;
 
-public class DAOPatientJDBC implements IDAOPatient{
+public class DAOPatientJDBC {
 
-	@Override
+	/*@Override
 	public Patient findById(Integer id) {
 		Patient p = null;
 		try {
@@ -124,5 +124,5 @@ public class DAOPatientJDBC implements IDAOPatient{
 			e.printStackTrace();
 		}		
 	}
-
+*/
 }

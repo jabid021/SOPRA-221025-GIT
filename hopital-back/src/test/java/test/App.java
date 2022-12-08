@@ -192,7 +192,7 @@ public class App {
 				String nom = saisieString("Saisir votre nom");
 
 				p = new Patient(idPatient, nom, prenom);
-				daoPatient.insert(p);
+				daoPatient.save(p);
 			}
 			Singleton.getInstance().getFileAttente().add(p);
 
@@ -285,7 +285,7 @@ public class App {
 	public static void sauvegarderVisite() {
 
 		for (Visite v : ((Medecin) connected).getVisites()) {
-			daoVisite.insert(v);
+			daoVisite.save(v);
 		}
 		((Medecin) connected).getVisites().clear();
 

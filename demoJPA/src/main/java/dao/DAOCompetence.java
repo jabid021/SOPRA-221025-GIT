@@ -5,59 +5,53 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 import context.Singleton;
-import model.Visite;
+import model.Competence;
 
-public class DAOVisite implements IDAOVisite {
+public class DAOCompetence implements IDAOCompetence {
 
 	@Override
-	public Visite findById(Integer id) {
+	public Competence findById(Integer id) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		Visite visite = em.find(Visite.class, id);
+		Competence competence = em.find(Competence.class, id);
 		em.close();
-		return visite;
+		return competence;
 	}
 
 	@Override
-	public List<Visite> findAll() {
+	public List<Competence> findAll() {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
-		List<Visite> visites = em.createQuery("from Visite").getResultList();
+		List<Competence> competences = em.createQuery("from Competence").getResultList();
 		em.close();
-		return visites;
+		return competences;
 	}
 
 	@Override
-	public Visite save(Visite s) {
+	public Competence save(Competence c) {
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		try 
 		{
 			em.getTransaction().begin();
-			s=em.merge(s);
+			c=em.merge(c);
 			em.getTransaction().commit();
 		}
 		catch(Exception e){e.printStackTrace();}
 		em.close();
-		return s;
+		return c;
 	}
 
 	@Override
-	public void delete(Visite v) {
+	public void delete(Competence c) {
 	
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		try 
 		{
 			em.getTransaction().begin();
-			v=em.merge(v);
-			em.remove(v);
+			c=em.merge(c);
+			em.remove(c);
 			em.getTransaction().commit();
 		}
 		catch(Exception e){e.printStackTrace();}
 		em.close();
-	}
-
-	@Override
-	public List<Visite> findAllByIdPatient(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }
