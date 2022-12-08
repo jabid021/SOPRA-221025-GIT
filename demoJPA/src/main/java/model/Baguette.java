@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +16,8 @@ public class Baguette {
 	private Integer id;
 	private String nom;
 	
+	@OneToOne(mappedBy = "baguette"  )
+	private Sorcier sorcier;
 	
 	public Baguette() {}
 
@@ -43,6 +46,18 @@ public class Baguette {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+
+
+	public Sorcier getSorcier() {
+		return sorcier;
+	}
+
+
+
+	public void setSorcier(Sorcier sorcier) {
+		this.sorcier = sorcier;
 	}
 
 

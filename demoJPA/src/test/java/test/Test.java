@@ -45,6 +45,7 @@ public class Test {
 		s1.setRang(1);
 		Eleve s2 = new Eleve("Weasley","Ron",1,Patronus.Chien,new Stats(20,15),m1);
 		Eleve s3 = new Eleve("Granger","Hermione",1,Patronus.Loutre,new Stats(50,50),m1);
+		
 		//s3.getSorts().add(spell2);
 		
 		
@@ -105,8 +106,21 @@ public class Test {
 		
 		System.out.println(parking);*/
 		
+		
 		em.close();
+		
+		
+		/*em=emf.createEntityManager();
+		
+		Baguette select = em.find(Baguette.class, 1);
+		System.out.println(select);
+		
+		System.out.println(select.getSorcier());
+		
+		em.close();*/
 		emf.close();
+		
+	
 	}
 
 }

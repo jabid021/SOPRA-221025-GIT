@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -15,8 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -43,10 +41,12 @@ public abstract class Sorcier {
 	protected Stats statistiques;
 	
 	
+	@OneToMany(mappedBy = "utilisateur")
+	protected List<Competence> competences;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="animal",nullable = false,columnDefinition = "ENUM('Cerf','Coccinelle','Loutre','Chien','Phoenix')")
-	private Patronus patronus;
+	protected Patronus patronus;
 	
 	
 /*	@JoinTable(
@@ -146,6 +146,16 @@ public abstract class Sorcier {
 
 	public Baguette getBaguette() {
 		return baguette;
+	}
+
+
+	public List<Competence> getCompetences() {
+		return competences;
+	}
+
+
+	public void setCompetences(List<Competence> competences) {
+		this.competences = competences;
 	}
 
 

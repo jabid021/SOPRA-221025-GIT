@@ -2,12 +2,16 @@ package model;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 @Entity
 @DiscriminatorValue("teacher")
 public class Professeur extends Sorcier {
 
 	private String matiere;
+	
+	@OneToOne(mappedBy = "principal")
+	private Maison dirigeant;
 
 	public Professeur() {
 	}
@@ -25,6 +29,17 @@ public class Professeur extends Sorcier {
 
 	public void setMatiere(String matiere) {
 		this.matiere = matiere;
+	}
+
+	
+
+	public Maison getDirigeant() {
+		return dirigeant;
+	}
+
+
+	public void setDirigeant(Maison dirigeant) {
+		this.dirigeant = dirigeant;
 	}
 
 

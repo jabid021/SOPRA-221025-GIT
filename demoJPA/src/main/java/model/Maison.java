@@ -1,10 +1,13 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,6 +25,10 @@ public class Maison {
 	@JoinColumn(name="principal")
 	@OneToOne
 	private Professeur principal;
+	
+	@OneToMany(mappedBy="maison")
+	private List<Eleve> eleves;
+	
 	
 	public Maison() {}
 
@@ -52,6 +59,16 @@ public class Maison {
 
 	public void setPrincipal(Professeur principal) {
 		this.principal = principal;
+	}
+
+	
+	
+	public List<Eleve> getEleves() {
+		return eleves;
+	}
+
+	public void setEleves(List<Eleve> eleves) {
+		this.eleves = eleves;
 	}
 
 	@Override
