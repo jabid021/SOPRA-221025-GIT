@@ -14,6 +14,10 @@ public class Medecin extends Compte {
 	
     private transient int salle;
     
+    
+    public Medecin() {
+	}
+    
     public Medecin(Integer id, String mail, String password) {
 		super(id, mail, password);
  

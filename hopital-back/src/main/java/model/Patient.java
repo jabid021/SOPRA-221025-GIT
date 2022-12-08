@@ -18,6 +18,10 @@ public class Patient implements Serializable {
 	@Column(length = 50,nullable = false)
 	private String prenom;
 	
+	
+	public Patient() {
+	}
+	
 	public Patient(Integer id, String nom, String prenom) {
 		this.id = id;
 		this.nom = nom;

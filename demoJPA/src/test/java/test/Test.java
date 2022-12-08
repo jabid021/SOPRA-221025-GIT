@@ -19,7 +19,9 @@ import model.Stats;
 
 public class Test {
 
-	public static void main(String[] args) {
+	
+	public static void demoInsertData() 
+	{
 	
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
 		
@@ -39,7 +41,7 @@ public class Test {
 		
 		Stats stat1 = new Stats(99,99);
 		
-		Eleve s1 = new Eleve("Potter","Harry",1,Patronus.Cerf,stat1,m1);
+		Eleve s1 = new Eleve(null,"Harry",1,Patronus.Cerf,stat1,m1);
 		s1.setBaguette(b1);
 	//	s1.getSorts().add(spell1);
 		s1.setRang(1);
@@ -119,6 +121,60 @@ public class Test {
 		
 		em.close();*/
 		emf.close();
+	
+	}
+
+	
+	public static void demoCrud() 
+	{
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("demoJPA");
+		
+		
+		Maison m = new Maison("TEST",null);
+		m.setId(45);
+		
+		EntityManager em = emf.createEntityManager();
+		
+		//findById
+		//Maison m=em.find(Maison.class, 3);
+		
+		//findAll
+		//System.out.println(em.createQuery("from Maison").getResultList());
+		
+		em.getTransaction().begin();
+		
+		//Insert
+		//em.persist(m3);
+		
+		//Update
+		//m3=em.merge(m3);
+		em.merge(m);
+		
+		//delete
+		//em.remove(m);
+		
+		em.getTransaction().commit();
+		
+		em.close();
+
+	
+		emf.close();
+		
+		
+		
+		//persist(m) => m est managed
+		//find(id x ) => return un objet m qui est managed
+		//findAll() => retun une liste d'objets qui sont tous managed
+		//remove(m) => m DOIT ETRE MANAGED
+		//m2=merge(m) => m N'EST PAS MANAGED, m2 EST Managed
+	}
+	
+	public static void main(String[] args) {
+	
+		
+		
+		
+		demoCrud();
 		
 	
 	}

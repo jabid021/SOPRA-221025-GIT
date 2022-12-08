@@ -31,6 +31,8 @@ public class Visite {
 	@JoinColumn(name="id_medecin")
 	private Medecin medecin;
 	
+	public Visite() {
+	}
 	
 	public Visite(int id, Patient patient, Medecin medecin, double prix, int salle, LocalDate dateVisite) {
 		this.id = id;

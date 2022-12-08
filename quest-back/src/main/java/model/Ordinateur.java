@@ -1,12 +1,32 @@
 package model;
 
-public class Ordinateur {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="ordinateur")
+public class Ordinateur {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	@Column(length = 15,nullable=false)
 	private String marque;
 	private int ram;
+	
+	
+	@JoinColumn(name="stagiaire",nullable = false)
+	@OneToOne
 	private Stagiaire stagiaire;
 	
+	
+	public Ordinateur() {
+	}
 	
 	public Ordinateur(Integer id, String marque, int ram, Stagiaire stagiaire) {
 		this.id = id;

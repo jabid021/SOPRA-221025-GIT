@@ -31,7 +31,7 @@ public abstract class Sorcier {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
 	
-	@Column(columnDefinition = "VARCHAR(35)")
+	@Column(columnDefinition = "VARCHAR(35) default 'Doe'")
 	protected String nom;
 	
 	@Column(name="firstname",nullable=false,length = 35)

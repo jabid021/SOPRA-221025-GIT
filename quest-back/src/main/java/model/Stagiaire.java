@@ -1,12 +1,35 @@
 package model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="stagiaire")
 public class Stagiaire {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@Column(length = 25,nullable=false)
 	private String nom;
+	@Column(length = 25,nullable=false)
 	private String prenom;
+	@Column(length = 25,nullable=false)
 	private String email;
+	
+	
+	@JoinColumn(name="filiere", nullable=false)
+	@ManyToOne
 	private Filiere filiere;
+	
+	public Stagiaire() {}
 	
 	public Stagiaire(Integer id, String nom, String prenom, String email, Filiere filiere) {
 		this.id = id;
