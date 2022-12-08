@@ -1,5 +1,8 @@
 package model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Secretaire extends Compte {
 
 	public Secretaire(Integer id, String mail, String password) {
@@ -9,7 +12,7 @@ public class Secretaire extends Compte {
 
 	@Override
 	public String toString() {
-		return "Secretaire [id=" + id + ", mail=" + mail + ", password=" + password + "]";
+		return "Secretaire [id=" + id + ", mail=" + login + ", password=" + password + "]";
 	}	
 	
 

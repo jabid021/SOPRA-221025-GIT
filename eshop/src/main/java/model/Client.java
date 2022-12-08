@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 @Entity
 @DiscriminatorValue("customer")
@@ -21,12 +22,8 @@ public class Client extends Personne{
 	@Column(name="birthdate")
 	private LocalDate naissance;
 
-	@JoinTable(
-			name="achat",
-			joinColumns=@JoinColumn(name="acheteur"),
-			inverseJoinColumns=@JoinColumn(name="produit"))
-	@ManyToMany
-	private List<Produit> achats = new ArrayList();
+	@OneToMany(mappedBy = "client")
+	private List<Achat> achats = new ArrayList();
 	
 	public Client() {}
 	
@@ -62,18 +59,18 @@ public class Client extends Personne{
 
 
 
-	public List<Produit> getAchats() {
+	public List<Achat> getAchats() {
 		return achats;
 	}
 
-	public void setAchats(List<Produit> achats) {
+	public void setAchats(List<Achat> achats) {
 		this.achats = achats;
 	}
 
 	@Override
 	public String toString() {
 		return "Client [id=" + id + ", prenom=" + prenom + ", nom=" + nom + ", adresse=" + adresse + ", age=" + age
-				+ ", naissance=" + naissance + ", achats=" + achats + "]";
+				+ ", naissance=" + naissance + "]";
 	}
 
 	

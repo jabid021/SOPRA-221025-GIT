@@ -1,20 +1,36 @@
 package model;
 
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type_compte",columnDefinition = "enum('Medecin', 'Secretaire')")
 public class Compte {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	protected String mail;
+	protected String login;
 	protected String password;
+	
+	public Compte() {
+	}
 	
 	public Compte(Integer id, String mail, String password) {
 
 		this.id = id;
-		this.mail = mail;
+		this.login = mail;
 		this.password = password;
 	}
 	
 	public Compte(String mail, String password) {
-		this.mail = mail;
+		this.login = mail;
 		this.password = password;
 	}
 
@@ -26,12 +42,12 @@ public class Compte {
 		this.id = id;
 	}
 
-	public String getMail() {
-		return mail;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setMail(String mail) {
-		this.mail = mail;
+	public void setLogin(String mail) {
+		this.login = mail;
 	}
 
 	public String getPassword() {
@@ -44,7 +60,7 @@ public class Compte {
 
 	@Override
 	public String toString() {
-		return "Compte [id=" + id + ", mail=" + mail + ", password=" + password + "]";
+		return "Compte [id=" + id + ", mail=" + login + ", password=" + password + "]";
 	}
 	
 	

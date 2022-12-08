@@ -84,7 +84,7 @@ public class DAOCompteJDBC implements IDAOCompte {
 			if (c instanceof Medecin) {
 
 				PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
-				ps.setString(1, c.getMail());
+				ps.setString(1, c.getLogin());
 				ps.setString(2, c.getPassword());
 				ps.setString(3, "Medecin");
 
@@ -93,7 +93,7 @@ public class DAOCompteJDBC implements IDAOCompte {
 				ps.close();
 			} else if (c instanceof Secretaire) {
 				PreparedStatement ps = conn.prepareStatement("INSERT INTO compte (login, password, type_compte) VALUES (?,?,?)");
-				ps.setString(1, c.getMail());
+				ps.setString(1, c.getLogin());
 				ps.setString(2, c.getPassword());
 				ps.setString(3, "Secretaire");
 
@@ -116,7 +116,7 @@ public class DAOCompteJDBC implements IDAOCompte {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection(urlBdd, loginBdd, passwordBdd);
 			PreparedStatement ps = conn.prepareStatement("UPDATE compte SET login=?, password=?");
-			ps.setString(1, c.getMail());
+			ps.setString(1, c.getLogin());
 			ps.setString(2, c.getPassword());
 
 			ps.executeUpdate();

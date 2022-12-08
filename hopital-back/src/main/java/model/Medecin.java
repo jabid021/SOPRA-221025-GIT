@@ -3,10 +3,16 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Medecin extends Compte {
 
+	@OneToMany(mappedBy = "medecin")
 	private List<Visite> visites = new ArrayList(); 
-    private int salle;
+	
+    private transient int salle;
     
     public Medecin(Integer id, String mail, String password) {
 		super(id, mail, password);

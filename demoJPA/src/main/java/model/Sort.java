@@ -19,6 +19,7 @@ public class Sort {
 	private int puissance;
 	
 	
+	
 	public Sort() {}
 
 

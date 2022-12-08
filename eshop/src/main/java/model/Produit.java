@@ -1,12 +1,17 @@
 package model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -24,6 +29,9 @@ public class Produit {
 
 	@Column(name="price",columnDefinition = "DECIMAL(6,2)")
 	private double prix;
+	
+	@OneToMany(mappedBy = "produit")
+	private List<Achat> ventes;
 	
 	
 	@JoinColumn(name="vendeur")
@@ -72,6 +80,15 @@ public class Produit {
 
 	public void setFournisseur(Fournisseur fournisseur) {
 		this.fournisseur = fournisseur;
+	}
+
+	
+	public List<Achat> getVentes() {
+		return ventes;
+	}
+
+	public void setVentes(List<Achat> ventes) {
+		this.ventes = ventes;
 	}
 
 	@Override

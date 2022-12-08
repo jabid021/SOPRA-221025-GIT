@@ -2,13 +2,34 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Visite {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="numero")
 	private int id;
-	private Patient patient;
-	private Medecin medecin;
 	private double prix =20;
 	private int salle;
+	@Column(name="date_visite")
 	private LocalDate dateVisite;
+	
+	
+	@ManyToOne
+	@JoinColumn(name="id_patient")
+	private Patient patient;
+	
+	@ManyToOne
+	@JoinColumn(name="id_medecin")
+	private Medecin medecin;
 	
 	
 	public Visite(int id, Patient patient, Medecin medecin, double prix, int salle, LocalDate dateVisite) {
