@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import context.Singleton;
 import dao.DAOFiliere;
 import dao.DAOStagiaire;
+import dao.IDAOFiliere;
+import dao.IDAOStagiaire;
 import model.Filiere;
 import model.Stagiaire;
 
@@ -19,8 +22,8 @@ public class StagiaireController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		DAOStagiaire daoS = new DAOStagiaire();
-		DAOFiliere daoF = new DAOFiliere();
+		IDAOStagiaire daoS = Singleton.getInstance().getDaoStagiaire();
+		IDAOFiliere daoF = Singleton.getInstance().getDaoFiliere();
 		
 		if(request.getParameter("id")==null) 
 		{
@@ -45,7 +48,8 @@ public class StagiaireController extends HttpServlet {
 			else 
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
-				daoS.delete(id);
+				Stagiaire s = daoS.findById(id);
+				daoS.delete(s);
 				response.sendRedirect("stagiaire");
 			}
 		}
@@ -54,8 +58,8 @@ public class StagiaireController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOStagiaire daoS = new DAOStagiaire();
-		DAOFiliere daoF = new DAOFiliere();
+		IDAOStagiaire daoS = Singleton.getInstance().getDaoStagiaire();
+		IDAOFiliere daoF = Singleton.getInstance().getDaoFiliere();
 		if(request.getParameter("id")==null) 
 		{
 			
@@ -67,7 +71,7 @@ public class StagiaireController extends HttpServlet {
 			Filiere f = daoF.findById(idFiliere);
 			
 			Stagiaire s = new Stagiaire(nom, prenom, email, f);
-			daoS.insert(s);
+			daoS.save(s);
 			response.sendRedirect("stagiaire");
 		}
 		else 
@@ -81,7 +85,7 @@ public class StagiaireController extends HttpServlet {
 			Filiere f = daoF.findById(idFiliere);
 			
 			Stagiaire s = new Stagiaire(id,nom, prenom, email, f);
-			daoS.update(s);
+			daoS.save(s);
 			response.sendRedirect("stagiaire");
 		}
 	}

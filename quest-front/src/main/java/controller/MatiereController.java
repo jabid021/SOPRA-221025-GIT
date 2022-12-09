@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.DAOMatiere;
+import context.Singleton;
+import dao.IDAOMatiere;
 import model.Matiere;
 
 @WebServlet("/matiere")
@@ -17,7 +18,8 @@ public class MatiereController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		DAOMatiere daoM = new DAOMatiere();
+		IDAOMatiere daoM = Singleton.getInstance().getDaoMatiere();
+		
 		if(request.getParameter("id")==null) 
 		{
 			
@@ -37,7 +39,8 @@ public class MatiereController extends HttpServlet {
 			else 
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
-				daoM.delete(id);
+				Matiere m = daoM.findById(id);
+				daoM.delete(m);
 				response.sendRedirect("matiere");
 			}
 		}
@@ -47,14 +50,14 @@ public class MatiereController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		DAOMatiere daoM = new DAOMatiere();
+		IDAOMatiere daoM = Singleton.getInstance().getDaoMatiere();
 		
 		if(request.getParameter("id")==null) 
 		{
 			String libelle = request.getParameter("libelle");
 			int quest = Integer.parseInt(request.getParameter("quest"));
 			Matiere m = new Matiere(libelle, quest);
-			daoM.insert(m);
+			daoM.save(m);
 			response.sendRedirect("matiere");
 		}
 		else 
@@ -63,7 +66,7 @@ public class MatiereController extends HttpServlet {
 			String libelle = request.getParameter("libelle");
 			int quest = Integer.parseInt(request.getParameter("quest"));
 			Matiere m = new Matiere(id,libelle, quest);
-			daoM.update(m);
+			daoM.save(m);
 			response.sendRedirect("matiere");
 		}
 	}

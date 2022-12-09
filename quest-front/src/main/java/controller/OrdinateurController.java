@@ -9,8 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import context.Singleton;
 import dao.DAOOrdinateur;
 import dao.DAOStagiaire;
+import dao.IDAOOrdinateur;
+import dao.IDAOStagiaire;
 import model.Ordinateur;
 import model.Stagiaire;
 
@@ -18,9 +21,9 @@ import model.Stagiaire;
 public class OrdinateurController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		DAOOrdinateur daoO = new DAOOrdinateur();
-		DAOStagiaire daoS = new DAOStagiaire();
+		
+		IDAOOrdinateur daoO = Singleton.getInstance().getDaoOrdinateur();
+		IDAOStagiaire daoS = Singleton.getInstance().getDaoStagiaire();
 		if(request.getParameter("id")==null) 
 		{
 			
@@ -43,7 +46,8 @@ public class OrdinateurController extends HttpServlet {
 			}
 			else {
 				int id = Integer.parseInt(request.getParameter("id"));
-				daoO.delete(id);
+				Ordinateur o = daoO.findById(id);
+				daoO.delete(o);
 				response.sendRedirect("ordinateur");
 			}
 		}
@@ -52,8 +56,8 @@ public class OrdinateurController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DAOOrdinateur daoO = new DAOOrdinateur();
-		DAOStagiaire daoS = new DAOStagiaire();
+		IDAOOrdinateur daoO = Singleton.getInstance().getDaoOrdinateur();
+		IDAOStagiaire daoS = Singleton.getInstance().getDaoStagiaire();
 		
 		if(request.getParameter("id")==null) 
 		{
@@ -63,7 +67,7 @@ public class OrdinateurController extends HttpServlet {
 			Stagiaire s = daoS.findById(idStagiaire);
 			
 			Ordinateur o = new Ordinateur(marque, ram,s);
-			daoO.insert(o);
+			daoO.save(o);
 			response.sendRedirect("ordinateur");
 		}
 		else 
@@ -75,7 +79,7 @@ public class OrdinateurController extends HttpServlet {
 			Stagiaire s = daoS.findById(idStagiaire);
 			
 			Ordinateur o = new Ordinateur(id,marque, ram,s);
-			daoO.update(o);
+			daoO.save(o);
 			response.sendRedirect("ordinateur");
 		}
 	}

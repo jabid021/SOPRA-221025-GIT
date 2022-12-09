@@ -4,9 +4,12 @@ import java.time.LocalDate;
 
 import javax.persistence.EntityManagerFactory;
 
+import context.Singleton;
+import dao.IDAOFiliere;
+import dao.IDAOMatiere;
+import dao.IDAOOrdinateur;
+import dao.IDAOStagiaire;
 import model.Filiere;
-import model.Matiere;
-import model.Ordinateur;
 import model.Stagiaire;
 
 public class TESTJPA {
@@ -39,7 +42,7 @@ public class TESTJPA {
 	
 		s1=daoS.save(s1);
 		
-		if((nbStagiaire+1)==daoF.findAll().size()) 
+		if((nbStagiaire+1)==daoS.findAll().size()) 
 		{
 			System.out.println("Insert stagiaire est OK");
 		}
@@ -53,7 +56,7 @@ public class TESTJPA {
 		daoF.delete(f1);
 		
 		
-		if((nbStagiaire)==daoF.findAll().size()) 
+		if((nbStagiaire)==daoS.findAll().size()) 
 		{
 			System.out.println("delete stagiaire est OK");
 		}

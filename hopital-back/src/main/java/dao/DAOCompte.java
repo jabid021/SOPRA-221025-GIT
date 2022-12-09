@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import context.Singleton;
 import model.Compte;
@@ -19,6 +20,7 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public List<Compte> findAll() {
+		
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		List<Compte> comptes = em.createQuery("from Compte").getResultList();
 		em.close();
@@ -41,7 +43,7 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public void delete(Compte c) {
-	
+
 		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
 		try 
 		{
@@ -56,8 +58,19 @@ public class DAOCompte implements IDAOCompte {
 
 	@Override
 	public Compte seConnecter(String login, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		Compte compte = null;
+
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		Query query = em.createQuery("Select c from Compte c where c.login=:login and c.password=:password");
+		query.setParameter("login", login);
+		query.setParameter("password", password);
+
+		try {
+			compte =  (Compte) query.getSingleResult();
+		}
+		catch(Exception e) {e.printStackTrace();}
+		em.close();
+		return compte;
 	}
 
 }

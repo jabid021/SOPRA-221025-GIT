@@ -1,20 +1,18 @@
 package test;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import context.Singleton;
-import heritage.joined.Chat;
-import heritage.joined.Chien;
-import heritage.per_class.Avion;
-import heritage.per_class.Voiture;
 import model.Baguette;
 import model.Competence;
 import model.Eleve;
 import model.Maison;
 import model.Patronus;
 import model.Professeur;
+import model.Sorcier;
 import model.Sort;
 import model.Stats;
 
@@ -171,7 +169,13 @@ public class Test {
 	public static void main(String[] args) {
 	
 		
-		//System.out.println(Singleton.getInstance().getDaoSorcier().findAll());
+		List<Sorcier> sorciers = Singleton.getInstance().getDaoSorcier().findAll();
+		for(Sorcier s : sorciers) 
+		{
+			System.out.println(s.getPrenom());
+			System.out.println(s.getBaguette());
+			System.out.println(s.getCompetences());
+		}
 		
 		//demoCrud();
 		

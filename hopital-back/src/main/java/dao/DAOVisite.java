@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import context.Singleton;
 import model.Visite;
@@ -56,8 +57,21 @@ public class DAOVisite implements IDAOVisite {
 
 	@Override
 	public List<Visite> findAllByIdPatient(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		
+		/*Query query = em.createQuery("SELECT v from Visite v where v.patient.id=?");
+		query.setParameter(1, id);
+		List<Visite> visites=query.getResultList();*/
+		
+		//List<Visite> visites=em.createQuery("SELECT v from Visite v where v.patient.id=:idPatient").setParameter("idPatient", id).getResultList();
+		
+		
+		Query query = em.createQuery("SELECT v from Visite v where v.patient.id=:idPatient");
+		query.setParameter("idPatient", id);
+		List<Visite> visites=query.getResultList();
+		
+		em.close();
+		return visites;
 	}
 
 }

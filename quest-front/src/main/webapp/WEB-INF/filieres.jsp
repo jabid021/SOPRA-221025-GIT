@@ -17,10 +17,13 @@
 
 
 	<div id="content">
-		<h1>Liste des Filieres</h1>
+		<h1>Liste des Filieres ${filtre}</h1>
 		<input id="btnAddFiliere" type="button" class="btn btn-success"
 			value="Ajouter"> <a href="index.html"><input
-			type="button" class="btn btn-info" value="Retour"></a>
+			type="button" class="btn btn-info" value="Retour"></a><br><br>
+			<form action="filiere" method="get">
+				<input required type="date" name="recherche"><input type="submit" class="btn btn-secondary">
+			</form>
 
 		<table class="table table-striped">
 			<thead>
