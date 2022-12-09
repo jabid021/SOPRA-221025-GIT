@@ -38,6 +38,7 @@ public class OrdinateurController extends HttpServlet {
 			if(request.getParameter("delete")==null) 
 			{
 				int id = Integer.parseInt(request.getParameter("id"));
+				
 				Ordinateur o = daoO.findById(id);
 				List<Stagiaire> stagiaires = daoS.findAll();
 				request.setAttribute("ordinateur", o);
@@ -73,12 +74,14 @@ public class OrdinateurController extends HttpServlet {
 		else 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
+			int version = Integer.parseInt(request.getParameter("version"));
 			String marque = request.getParameter("marque");
 			int ram = Integer.parseInt(request.getParameter("ram"));
 			int idStagiaire= Integer.parseInt(request.getParameter("stagiaire"));
 			Stagiaire s = daoS.findById(idStagiaire);
 			
 			Ordinateur o = new Ordinateur(id,marque, ram,s);
+			o.setVersion(version);
 			daoO.save(o);
 			response.sendRedirect("ordinateur");
 		}

@@ -63,9 +63,11 @@ public class MatiereController extends HttpServlet {
 		else 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
+			int version = Integer.parseInt(request.getParameter("version"));
 			String libelle = request.getParameter("libelle");
 			int quest = Integer.parseInt(request.getParameter("quest"));
 			Matiere m = new Matiere(id,libelle, quest);
+			m.setVersion(version);
 			daoM.save(m);
 			response.sendRedirect("matiere");
 		}

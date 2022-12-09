@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="stagiaire")
@@ -28,6 +29,9 @@ public class Stagiaire {
 	@JoinColumn(name="filiere", nullable=false)
 	@ManyToOne
 	private Filiere filiere;
+	
+	@Version
+	private int version;
 	
 	public Stagiaire() {}
 	
@@ -84,6 +88,16 @@ public class Stagiaire {
 
 	public void setFiliere(Filiere filiere) {
 		this.filiere = filiere;
+	}
+	
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

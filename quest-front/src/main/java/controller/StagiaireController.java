@@ -77,6 +77,8 @@ public class StagiaireController extends HttpServlet {
 		else 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
+			int version = Integer.parseInt(request.getParameter("version"));
+			
 			String nom = request.getParameter("nom");
 			String prenom = request.getParameter("prenom");
 			String email = request.getParameter("email");
@@ -85,6 +87,7 @@ public class StagiaireController extends HttpServlet {
 			Filiere f = daoF.findById(idFiliere);
 			
 			Stagiaire s = new Stagiaire(id,nom, prenom, email, f);
+			s.setVersion(version);
 			daoS.save(s);
 			response.sendRedirect("stagiaire");
 		}

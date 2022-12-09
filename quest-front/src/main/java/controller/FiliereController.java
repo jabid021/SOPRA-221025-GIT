@@ -18,7 +18,7 @@ import model.Filiere;
 @WebServlet("/filiere")
 public class FiliereController extends HttpServlet {
 
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		IDAOFiliere daoF = Singleton.getInstance().getDaoFiliere();
@@ -40,7 +40,7 @@ public class FiliereController extends HttpServlet {
 		}
 		else 
 		{
-		
+
 			//pas de param delete => findById
 			if(request.getParameter("delete")==null) 
 			{
@@ -58,22 +58,22 @@ public class FiliereController extends HttpServlet {
 				response.sendRedirect("filiere");
 			}
 		}
-	
-	
+
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Si pas d'id en param => insert
-		
+
 		IDAOFiliere daoF = Singleton.getInstance().getDaoFiliere();
-		
+
 		if(request.getParameter("id")==null) 
 		{
 			String libelle = request.getParameter("libelle");
 			String debut = request.getParameter("debut");
 			String fin = request.getParameter("fin");
 			Filiere f = new Filiere(libelle, LocalDate.parse(debut), LocalDate.parse(fin));
-			
+
 			daoF.save(f);	
 			response.sendRedirect("filiere");
 
@@ -82,11 +82,13 @@ public class FiliereController extends HttpServlet {
 		else 
 		{
 			int id = Integer.parseInt(request.getParameter("id"));
+			int version = Integer.parseInt(request.getParameter("version"));
 			String libelle = request.getParameter("libelle");
 			String debut = request.getParameter("debut");
 			String fin = request.getParameter("fin");
 			Filiere f = new Filiere(id,libelle, LocalDate.parse(debut), LocalDate.parse(fin));
-		
+			
+			f.setVersion(version);
 			daoF.save(f);
 			response.sendRedirect("filiere");
 

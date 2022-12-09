@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="ordinateur")
@@ -24,6 +25,8 @@ public class Ordinateur {
 	@OneToOne
 	private Stagiaire stagiaire;
 	
+	@Version
+	private int version;
 	
 	public Ordinateur() {
 	}
@@ -71,6 +74,15 @@ public class Ordinateur {
 
 	public void setStagiaire(Stagiaire stagiaire) {
 		this.stagiaire = stagiaire;
+	}
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

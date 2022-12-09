@@ -19,6 +19,7 @@
   <h3>Modifier Ordinateur ${ordinateur.id}</h3>
   <form action="ordinateur" method="post">
   <input type="hidden" name="id" value="${ordinateur.id}">
+   <input type="hidden" name="version" value="${ordinateur.version}">
   Marque :<input value="${ordinateur.marque}" name="marque" type="text" placeholder="Saisir votre marque"><br>
   RAM :<input value="${ordinateur.ram}" name="ram" type="number" placeholder="Saisir votre RAM"><br>
   Stagiaire

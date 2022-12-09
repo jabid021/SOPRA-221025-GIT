@@ -54,4 +54,10 @@ public class DAOStagiaire implements IDAOStagiaire {
 		em.close();
 	}
 
+	@Override
+	public List<Stagiaire> findAllByFiliere(Integer idFiliere) {
+		//CODER ICI 
+		return null;
+	}
+
 }

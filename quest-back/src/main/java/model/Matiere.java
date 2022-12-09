@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 @Entity
 @Table(name="matiere")
@@ -18,7 +19,8 @@ public class Matiere {
 	private String libelle;
 	private int quest;
 	
-	
+	@Version
+	private int version;
 	
 	public Matiere() {
 	}
@@ -65,6 +67,15 @@ public class Matiere {
 		this.quest = quest;
 	}
 
+	
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 	@Override
 	public String toString() {

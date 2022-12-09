@@ -21,6 +21,7 @@
   <h3>Modifier Stagiaire ${stagiaire.id}</h3>
   <form action="stagiaire" method="post">
   <input type="hidden" name="id" value="${stagiaire.id}">
+  <input type="hidden" name="version" value="${stagiaire.version}">
   Nom :<input value="${stagiaire.nom}" name="nom" type="text" placeholder="Saisir votre nom"><br>
   Prenom :<input value="${stagiaire.prenom}" name="prenom" type="text" placeholder="Saisir votre prenm"><br>
   Email :<input value="${stagiaire.email}" name="email" type="email" placeholder="Saisir votre email"><br>
