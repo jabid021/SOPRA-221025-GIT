@@ -27,7 +27,7 @@ public class Test {
 		EntityManagerFactory emf = Singleton.getInstance().getEmf();
 		
 		Professeur p1 = new Professeur("Dumbledore","Albus",Patronus.Phoenix,new Stats(9001,9001),"Metamorphose");
-		Professeur p2 = new Professeur("Severus ","Rogue",Patronus.Coccinelle,new Stats(50,90),"PAS GENTIL");
+		Professeur p2 = new Professeur("sev ","Rogue",Patronus.Coccinelle,new Stats(50,90),"PAS GENTIL");
 	
 
 		Maison m1 = new Maison("Gryffondor",p1);
@@ -69,9 +69,9 @@ public class Test {
 		
 		em.getTransaction().begin();
 		
+		p2=em.merge(p2);
 		
-		
-		em.persist(s1);
+	/*	em.persist(s1);
 		em.persist(s2);
 		em.persist(s3);
 		em.persist(m1);
@@ -83,12 +83,10 @@ public class Test {
 		em.persist(p1);
 		em.persist(p2);
 		em.persist(comp1);
-		em.persist(comp2);
+		em.persist(comp2);*/
 		
 		em.getTransaction().commit();
-		
-
-
+	
 		
 	/*	List<Sorcier> poudlard = em.createQuery("from Sorcier").getResultList();
 		
@@ -173,11 +171,11 @@ public class Test {
 	public static void main(String[] args) {
 	
 		
-		System.out.println(Singleton.getInstance().getDaoSorcier().findAll());
+		//System.out.println(Singleton.getInstance().getDaoSorcier().findAll());
 		
 		//demoCrud();
 		
-	
+		demoInsertData();
 	}
 
 }
