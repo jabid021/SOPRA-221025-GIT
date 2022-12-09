@@ -32,6 +32,7 @@
 					<th>Libelle</th>
 					<th>Debut</th>
 					<th>Fin</th>
+					<th>Stagiaires</th>
 					<th>Actions</th>
 				</tr>
 			</thead>
@@ -44,6 +45,11 @@
 						<td>${f.libelle}</td>
 						<td>${f.debut}</td>
 						<td>${f.fin}</td>
+						<td>
+							<c:forEach items="${f.stagiaires}" var="s">
+							${s.prenom} ${s.nom},     
+							</c:forEach>
+						</td>
 						<td><a href="filiere?id=${f.id}"><input
 								type="button" class="btn btn-warning" value="Modifier"></a>
 							<a href="filiere?id=${f.id}&delete"><input type="button" class="btn btn-danger" value="Supprimer"></a></td>
@@ -52,6 +58,7 @@
 
 				</c:forEach>
 
+				<c:if test="${filieres.isEmpty()}"><tr><td align="center" colspan="5">PAS DE FILIERE</td ></tr></c:if>
 			</tbody>
 		</table>
 

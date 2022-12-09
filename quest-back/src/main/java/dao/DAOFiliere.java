@@ -57,9 +57,19 @@ public class DAOFiliere implements IDAOFiliere {
 
 	@Override
 	public List<Filiere> findAllByDateFilter(LocalDate filter) {
-		//CODER ICI 
-		
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Filiere> filieres = em.createQuery("SELECT distinct f from Filiere f  left join fetch f.stagiaires where :filter BETWEEN f.debut and f.fin").setParameter("filter", filter).getResultList();
+		em.close();
+		return filieres;
+	}
+	
+	
+	@Override
+	public List<Filiere> findAllWithStagiaires() {
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Filiere> filieres = em.createQuery("SELECT distinct f from Filiere f left join fetch f.stagiaires").getResultList();
+		em.close();
+		return filieres;
 	}
 
 }

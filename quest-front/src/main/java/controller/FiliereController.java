@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import context.Singleton;
-import dao.DAOFiliere;
 import dao.IDAOFiliere;
+import dao.IDAOStagiaire;
 import model.Filiere;
+import model.Stagiaire;
 
 @WebServlet("/filiere")
 public class FiliereController extends HttpServlet {
@@ -22,19 +23,27 @@ public class FiliereController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		IDAOFiliere daoF = Singleton.getInstance().getDaoFiliere();
+		IDAOStagiaire daoS = Singleton.getInstance().getDaoStagiaire();
 		//Si on ne recoit pas d'id => findAll
 		if(request.getParameter("id")==null) 
 		{
 			String recherche = request.getParameter("recherche");
 			List<Filiere> filieres;
+			
 			if(recherche==null) {
-				filieres = daoF.findAll();
+				filieres = daoF.findAllWithStagiaires();
 			}
 			else 
 			{
 				filieres = daoF.findAllByDateFilter(LocalDate.parse(recherche));
 				request.setAttribute("filtre", "( Filtrées )");
 			}
+			/*for(Filiere f :  filieres) 
+			{
+				List<Stagiaire> stagiairesDeLaFiliere = daoS.findAllByFiliere(f.getId());
+				f.setStagiaires(stagiairesDeLaFiliere);
+			}*/
+			
 			request.setAttribute("filieres", filieres);
 			this.getServletContext().getRequestDispatcher("/WEB-INF/filieres.jsp").forward(request, response);	
 		}

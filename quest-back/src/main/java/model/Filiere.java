@@ -1,12 +1,15 @@
 package model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
@@ -27,6 +30,13 @@ public class Filiere {
 	@Column(nullable=false)
 	private LocalDate fin;
 	
+	
+	@OneToMany(mappedBy = "filiere")
+	private List<Stagiaire> stagiaires;
+	
+	
+	@ManyToMany
+	private List<Matiere> matieres;
 	
 	@Version
 	private int version;
@@ -88,6 +98,26 @@ public class Filiere {
 
 	public void setVersion(int version) {
 		this.version = version;
+	}
+
+	
+	
+	public List<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(List<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+	
+	
+
+	public List<Matiere> getMatieres() {
+		return matieres;
+	}
+
+	public void setMatieres(List<Matiere> matieres) {
+		this.matieres = matieres;
 	}
 
 	@Override

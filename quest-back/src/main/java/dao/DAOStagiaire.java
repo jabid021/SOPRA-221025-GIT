@@ -56,8 +56,10 @@ public class DAOStagiaire implements IDAOStagiaire {
 
 	@Override
 	public List<Stagiaire> findAllByFiliere(Integer idFiliere) {
-		//CODER ICI 
-		return null;
+		EntityManager em = Singleton.getInstance().getEmf().createEntityManager();
+		List<Stagiaire> stagiaires = em.createQuery("SELECT s from Stagiaire s where s.filiere.id=:id").setParameter("id",idFiliere).getResultList();
+		em.close();
+		return stagiaires;
 	}
 
 }
