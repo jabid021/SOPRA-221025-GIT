@@ -2,12 +2,15 @@ package tp.orchestre;
 
 import java.util.Scanner;
 
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import tp.orchestre.config.ApplicationConfig;
 
 public class Principal {
 
 	public static void main(String[] args) throws Exception {
-		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+		// ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("application-context.xml");
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 		
 		System.out.println("Choisissez votre Musicien ?");
 		System.out.println("1 - Pianiste");
@@ -29,6 +32,7 @@ public class Principal {
 		musicien.jouer();
 
 		
+		clavier.close();
 		
 		context.close();
 	}
