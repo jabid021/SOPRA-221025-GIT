@@ -10,5 +10,17 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+	<context:annotation-config /> <!-- Activation du mode anotations Spring (optionnel si component-scan présent)-->
+
+	<context:component-scan base-package="tp.orchestre" /> <!-- Préciser le ou les packages à scanner -->
+
+
+	<bean id="guitariste" class="tp.orchestre.Guitariste">
+		<property name="instrument" ref="guitare"/>
+	</bean>
+	
+	<bean id="guitare" class="tp.orchestre.Guitare"/>
+	
+	<bean id="ukulele" class="tp.orchestre.Ukulele"/>
 
 </beans>
