@@ -3,9 +3,6 @@ package tp.orchestre;
 import java.util.Scanner;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import tp.orchestre.config.ApplicationConfig;
 
 public class Principal {
 

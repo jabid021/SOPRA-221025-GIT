@@ -3,6 +3,7 @@ package tp.orchestre.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 import tp.orchestre.Guitare;
 import tp.orchestre.Guitariste;
@@ -15,6 +16,7 @@ import tp.orchestre.Ukulele;
 
 @Configuration
 @ComponentScan("tp.orchestre")
+@EnableAspectJAutoProxy
 public class ApplicationConfig {
 
 	@Bean
