@@ -1,5 +1,7 @@
 package tp.orchestre;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class Pianiste implements IMusicien {
 	private IInstrument instrument;
 
