@@ -22,5 +22,17 @@
 	<bean id="guitare" class="tp.orchestre.Guitare"/>
 	
 	<bean id="ukulele" class="tp.orchestre.Ukulele"/>
+	
+	<bean id="regisseurAspect" class="tp.orchestre.aspect.RegisseurAspect"/>
+
+	<aop:config>
+		<aop:pointcut expression="execution(* tp.orchestre.*.jouer(..))" id="regisseurPointcut"/>
+		
+		<aop:aspect ref="regisseurAspect">
+			<aop:before method="allumerLumiere" pointcut-ref="regisseurPointcut"/>
+			<aop:after method="eteindreLumiere" pointcut-ref="regisseurPointcut"/>
+		
+		</aop:aspect>
+	</aop:config>
 
 </beans>
