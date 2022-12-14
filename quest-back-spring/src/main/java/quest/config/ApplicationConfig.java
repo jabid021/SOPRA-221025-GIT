@@ -5,9 +5,13 @@ import java.util.Properties;
 import javax.persistence.EntityManagerFactory;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -16,19 +20,31 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
+@PropertySource("classpath:sgbd.properties") // On charge le fichier sgbd.properties en mémoire
 @ComponentScan("quest.dao") // On active des annotations @Component, @Repository, @Autowired, ... et on
 							// précise le(s) package(s) à scanner
 @EnableTransactionManagement // On active les annotations @Transactional avec transactionManager
 public class ApplicationConfig {
+	
+//	@Value("${db.driver}")
+//	private String driver;
+//	
+//	@Value("${db.url}")
+//	private String url;
+	
+	@Autowired
+	private Environment env;
+	
+	
 	// On crée le DataSource
 	@Bean
 	public BasicDataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/quest_jpa");
-		dataSource.setUsername("root");
-		dataSource.setPassword("admin");
-		dataSource.setMaxTotal(10);
+		dataSource.setDriverClassName(env.getProperty("db.driver"));
+		dataSource.setUrl(env.getProperty("db.url"));
+		dataSource.setUsername(env.getProperty("db.username"));
+		dataSource.setPassword(env.getProperty("db.password"));
+		dataSource.setMaxTotal(Integer.valueOf(env.getProperty("db.maxConnection")));
 
 		return dataSource;
 	}
@@ -44,7 +60,7 @@ public class ApplicationConfig {
 
 		Properties jpaProperties = new Properties();
 		jpaProperties.setProperty("hibernate.hbm2ddl.auto", "update");
-		jpaProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		jpaProperties.setProperty("hibernate.dialect", env.getProperty("db.dialect"));
 		jpaProperties.setProperty("hibernate.show_sql", "true");
 
 		emf.setJpaProperties(jpaProperties); // On précise les propriétés

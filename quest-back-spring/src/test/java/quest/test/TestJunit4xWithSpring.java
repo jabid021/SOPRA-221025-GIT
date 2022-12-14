@@ -17,8 +17,8 @@ import quest.model.Filiere;
 import quest.model.Stagiaire;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(locations = "classpath:/application-context.xml")
-@ContextConfiguration(classes = ApplicationConfig.class)
+@ContextConfiguration(locations = "classpath:/application-context.xml")
+//@ContextConfiguration(classes = ApplicationConfig.class)
 public class TestJunit4xWithSpring {
 	@Autowired
 	private IDAOFiliere daoFiliere;
