@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -22,18 +23,18 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @PropertySource("classpath:sgbd.properties") // On charge le fichier sgbd.properties en mémoire
 @ComponentScan("quest.dao") // On active des annotations @Component, @Repository, @Autowired, ... et on
 							// précise le(s) package(s) à scanner
+@EnableJpaRepositories("quest.dao")
 @EnableTransactionManagement // On active les annotations @Transactional avec transactionManager
 public class ApplicationConfig {
-
 //	@Value("${db.driver}")
 //	private String driver;
 //	
 //	@Value("${db.url}")
 //	private String url;
-
+	
 	@Autowired
 	private Environment env;
-
+	
 	// On crée le DataSource
 	@Bean
 	public BasicDataSource dataSource() {
