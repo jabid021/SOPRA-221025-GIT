@@ -13,7 +13,7 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 	<!-- On charge le fichier sgbd.properties en mémoire -->
-    <context:property-placeholder location="sgbd.properties"/>
+    <context:property-placeholder location="classpath:sgbd.properties"/>
 
 	<!-- On active des annotations @Component, @Repository, @Autowired, ... et on précise le(s) package(s) à scanner -->
 	<context:component-scan base-package="quest.dao"/>
