@@ -22,12 +22,12 @@ public class Stagiaire {
 
 	@Column(length = 25, nullable = false)
 	private String nom;
-	@Column(length = 25, nullable = false)
+	@Column(length = 25)
 	private String prenom;
-	@Column(length = 25, nullable = false)
+	@Column(length = 25)
 	private String email;
 
-	@JoinColumn(name = "filiere", nullable = false)
+	@JoinColumn(name = "filiere")
 	@ManyToOne
 	private Filiere filiere;
 
