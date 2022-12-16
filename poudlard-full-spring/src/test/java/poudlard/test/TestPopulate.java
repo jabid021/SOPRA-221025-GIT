@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import poudlard.config.ApplicationConfig;
 import poudlard.model.Baguette;
 import poudlard.model.Competence;
 import poudlard.model.Eleve;
@@ -21,8 +22,8 @@ import poudlard.repository.ISorcierRepository;
 import poudlard.repository.ISortRepository;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = "classpath:/application-context.xml")
-//@ContextConfiguration(classes = ApplicationConfig.class)
+//@ContextConfiguration(locations = "classpath:/application-context.xml")
+@ContextConfiguration(classes = ApplicationConfig.class)
 public class TestPopulate {
 	@Autowired
 	private IBaguetteRepository baguetteRepo;
