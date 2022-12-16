@@ -12,50 +12,54 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name="filiere")
+@Table(name = "filiere")
 public class Filiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@Column(length = 50,nullable=false)
+
+	@Column(length = 50, nullable = false)
+	@NotEmpty(message = "Le libellé est obligatoire")
+	@Size(max = 50, message = "Le libellé ne peut comporter que 50 caractères maximum")
 	private String libelle;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "La date de début est obligatoire")
 	private LocalDate debut;
-	
-	@Column(nullable=false)
+
+	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@NotNull(message = "La date de fin est obligatoire")
 	private LocalDate fin;
-	
-	
+
 	@OneToMany(mappedBy = "filiere")
 	private List<Stagiaire> stagiaires;
-	
-	
+
 	@ManyToMany
 	private List<Matiere> matieres;
-	
+
 	@Version
 	private int version;
-	
-	
+
 	public Filiere() {
 	}
-	
+
 	public Filiere(Integer id, String libelle, LocalDate debut, LocalDate fin) {
 		this.id = id;
 		this.libelle = libelle;
 		this.debut = debut;
 		this.fin = fin;
 	}
-	
+
 	public Filiere(String libelle, LocalDate debut, LocalDate fin) {
 		this.libelle = libelle;
 		this.debut = debut;
@@ -93,8 +97,6 @@ public class Filiere {
 	public void setFin(LocalDate fin) {
 		this.fin = fin;
 	}
-	
-	
 
 	public int getVersion() {
 		return version;
@@ -104,8 +106,6 @@ public class Filiere {
 		this.version = version;
 	}
 
-	
-	
 	public List<Stagiaire> getStagiaires() {
 		return stagiaires;
 	}
@@ -113,8 +113,6 @@ public class Filiere {
 	public void setStagiaires(List<Stagiaire> stagiaires) {
 		this.stagiaires = stagiaires;
 	}
-	
-	
 
 	public List<Matiere> getMatieres() {
 		return matieres;
@@ -128,8 +126,5 @@ public class Filiere {
 	public String toString() {
 		return "Filiere [id=" + id + ", libelle=" + libelle + ", debut=" + debut + ", fin=" + fin + "]";
 	}
-	
-	
-	
-	
+
 }

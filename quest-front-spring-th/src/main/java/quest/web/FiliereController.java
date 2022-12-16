@@ -4,10 +4,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import quest.dao.IDAOFiliere;
 import quest.model.Filiere;
+import quest.web.validator.FiliereValidator;
 
 @Controller
 @RequestMapping("/filiere")
@@ -65,7 +69,13 @@ public class FiliereController {
 	}
 	
 	@PostMapping("/saveBis")
-	public String saveBis(@ModelAttribute("filiere") Filiere filiere) {
+	public String saveBis(@ModelAttribute("filiere") @Valid Filiere filiere, BindingResult result) {
+		new FiliereValidator().validate(filiere, result);
+		
+		if(result.hasErrors()) {
+			return "filiere/form";
+		}
+		
 		filiere = daoFiliere.save(filiere);
 				
 		return "redirect:../filiere";
