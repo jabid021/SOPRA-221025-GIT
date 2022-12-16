@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- ETAPE 5 : EXECUTION DE LA VIEW (AVEC LES DONNEES DU MODEL) -->
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout.html">
+<head>
+<meta charset="UTF-8">
+<title>Edition du stagiaire</title>
+</head>
+<body>
+<section layout:fragment="monContenu">
+	<div class="container">
+		<div class="card mt-3">
+		
+			<form th:action="@{/stagiaire/saveBis}" method="post"> 
+				<input type="hidden" name="version" th:value="${stagiaire.version}"/>
+				<div class="card-header bg-info text-white"><h3>Edition du stagiaire</h3></div>
+				<div class="card-body">
+					<div class="form-group">
+						<label for="id">Identifiant:</label> <input type="number"
+							class="form-control" name="id" readonly th:value="${stagiaire.id}">
+						<span class="text-danger" th:errors="${stagiaire.id}"></span>
+					</div>
+					<div class="form-group">
+						<label for="nom">Nom:</label> <input type="text"
+							class="form-control" name="nom" th:value="${stagiaire.nom}">
+						<span class="text-danger" th:errors="${stagiaire.nom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="prenom">Prénom:</label> <input type="text" 
+							class="form-control" name="prenom" th:value="${stagiaire.prenom}">
+							<span class="text-danger" th:errors="${stagiaire.prenom}"></span>
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label> <input type="text"
+							class="form-control" name="email" th:value="${stagiaire.email}">
+						<span class="text-danger" th:errors="${stagiaire.email}"></span>
+					</div>
+					<div class="form-group">
+						<label for="idFiliere">Filière:</label>
+						<select class="form-control" name="idFiliere">
+							<option value="">Veuillez sélectionner une filière</option>
+							<option th:each="fil : ${filieres}" th:value="${fil.id}" th:selected="${fil.id == stagiaire.filiere?.id}">[[${fil.id}]] - [[${fil.libelle}]]</option>
+
+						</select> 
+					</div>
+				</div>
+				<div class="card-footer d-flex justify-content-end" >
+					<div class="btn-group btn-group-lg ">
+						<button type="submit" class="btn btn-success">
+							<i class="bi bi-check-square"></i>
+						</button>
+						<a th:href="@{/stagiaire/cancel}" class="btn btn-warning">
+							<i class="bi bi-backspace"></i>
+						</a>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</section>
+
+</body>
+</html>
