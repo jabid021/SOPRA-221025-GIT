@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "stagiaire")
@@ -21,6 +22,7 @@ public class Stagiaire {
 	private Integer id;
 
 	@Column(length = 25, nullable = false)
+	@Size(min = 2, max = 25, message = "Le nom doit comporter entre 2 et 25 caractères")
 	private String nom;
 	@Column(length = 25)
 	private String prenom;

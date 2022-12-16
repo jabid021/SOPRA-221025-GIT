@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Table(name="filiere")
 public class Filiere {
@@ -25,9 +27,11 @@ public class Filiere {
 	private String libelle;
 	
 	@Column(nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate debut;
 	
 	@Column(nullable=false)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fin;
 	
 	

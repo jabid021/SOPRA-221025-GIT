@@ -19,18 +19,22 @@
 					<div class="form-group">
 						<label for="id">Identifiant:</label> <input type="number"
 							class="form-control" name="id" readonly th:value="${stagiaire.id}">
+						<span class="text-danger" th:errors="${stagiaire.id}"></span>
 					</div>
 					<div class="form-group">
 						<label for="nom">Nom:</label> <input type="text"
 							class="form-control" name="nom" th:value="${stagiaire.nom}">
+						<span class="text-danger" th:errors="${stagiaire.nom}"></span>
 					</div>
 					<div class="form-group">
 						<label for="prenom">Prénom:</label> <input type="text" 
 							class="form-control" name="prenom" th:value="${stagiaire.prenom}">
+							<span class="text-danger" th:errors="${stagiaire.prenom}"></span>
 					</div>
 					<div class="form-group">
 						<label for="email">Email:</label> <input type="text"
 							class="form-control" name="email" th:value="${stagiaire.email}">
+						<span class="text-danger" th:errors="${stagiaire.email}"></span>
 					</div>
 					<div class="form-group">
 						<label for="idFiliere">Filière:</label>
