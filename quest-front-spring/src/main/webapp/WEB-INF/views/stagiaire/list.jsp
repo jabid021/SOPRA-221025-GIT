@@ -53,7 +53,6 @@
 							</tr>
 						</c:forEach>
 					</tbody>
-			
 				</table>
 			</div>
 			<div class="card-footer">
