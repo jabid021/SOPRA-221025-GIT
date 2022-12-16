@@ -33,6 +33,15 @@
 						<label for="email">Email:</label> <input type="text"
 							class="form-control" name="email" value="${stagiaire.email}">
 					</div>
+					<div class="form-group">
+						<label for="idFiliere">Filière:</label>
+						<select class="form-control" name="idFiliere">
+							<option value="">Veuillez sélectionner une filière</option>
+							<c:forEach items="${filieres}" var="fil">
+								<option value="${fil.id}" ${fil.id == stagiaire.filiere.id ? 'selected' : ''}>${fil.id} - ${fil.libelle}</option>
+							</c:forEach>
+						</select> 
+					</div>
 				</div>
 				<div class="card-footer d-flex justify-content-end" >
 					<div class="btn-group btn-group-lg ">

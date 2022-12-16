@@ -8,38 +8,36 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap.min.css"/>">
 <link rel="stylesheet" href="<c:url value="/css/bootstrap-icons.css"/>">
-<title>Liste des stagiaires</title>
+<title>Liste des filières</title>
 </head>
 <body>
 <div class="container">
 		<div class="card mt-3">
-			<div class="card-header bg-info text-white"><span class="h2">Liste des stagiaires</span></div>
+			<div class="card-header bg-info text-white"><span class="h2">Liste des filières</span></div>
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
 						<tr>
 						<th>Identifiant</th>
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Email</th>
-						<th>Filière</th>
+						<th>Libellé</th>
+						<th>Date de début</th>
+						<th>Date de fin</th>
 						<th></th>
 					</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${mesStagiaires}" var="stag">
-							<c:url value="/stagiaire/edit" var="editUrl">
-								<c:param name="id" value="${stag.id}"/>
+						<c:forEach items="${filieres}" var="filiere">
+							<c:url value="/filiere/edit" var="editUrl">
+								<c:param name="id" value="${filiere.id}"/>
 							</c:url>
-							<c:url value="/stagiaire/delete" var="deleteUrl">
-								<c:param name="id" value="${stag.id}"/>
+							<c:url value="/filiere/delete" var="deleteUrl">
+								<c:param name="id" value="${filiere.id}"/>
 							</c:url>
 							<tr>
-								<td>${stag.id}</td>
-								<td>${stag.nom}</td>
-								<td>${stag.prenom}</td>
-								<td>${stag.email}</td>
-								<td>${stag.filiere.id} - ${stag.filiere.libelle}</td>
+								<td>${filiere.id}</td>
+								<td>${filiere.libelle}</td>
+								<td>${filiere.debut}</td>
+								<td>${filiere.fin}</td>
 								<td>
 									<div class='btn-group btn-group-sm'>
 										<a href="${editUrl}" class='btn btn-primary'>
@@ -57,7 +55,7 @@
 				</table>
 			</div>
 			<div class="card-footer">
-				<c:url value="/stagiaire/add" var="addUrl"/>
+				<c:url value="/filiere/add" var="addUrl"/>
 				<a href="${addUrl}" class="btn btn-success btn-lg">
 					<i class="bi bi-plus-square"></i>
 				</a>
