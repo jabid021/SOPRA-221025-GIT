@@ -6,22 +6,24 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import poudlard.model.Baguette;
 import poudlard.model.Sorcier;
-
 import poudlard.repository.IBaguetteRepository;
 import poudlard.repository.ISorcierRepository;
+import poudlard.web.validator.BaguetteValidator;
 
 
-
-
+@Controller
+@RequestMapping("/baguette")
 public class BaguetteController {
 	
 	@Autowired
@@ -84,27 +86,42 @@ public class BaguetteController {
 		return "redirect:../baguette";
 	}
 	
-//	@PostMapping("/saveBis")
-//	public String saveBis(@ModelAttribute("baguette") @Valid Baguette baguette, BindingResult result,
-//			@RequestParam(required = false) Integer idSorcier, Model model) {
-//		new BaguetteValidator().validate(baguette, result);
-//		
-//		if(result.hasErrors()) {
-//			model.addAttribute("filieres", daoFiliere.findAll());
-//			
-//			return "stagiaire/form";
-//		}
-//		
-//		if(idFiliere != null) {
-//			Filiere filiere = new Filiere();
-//			filiere.setId(idFiliere);
-//			stagiaire.setFiliere(filiere);
-//		}
-//		
-//		stagiaire = daoStagiaire.save(stagiaire);
-//		
-//	
-//		return "redirect:../stagiaire";
-//	}
+	@PostMapping("/saveBis")
+	public String saveBis(@ModelAttribute("baguette") @Valid Baguette baguette, BindingResult result,
+			@RequestParam(required = false) Integer idSorcier, Model model) {
+		new BaguetteValidator().validate(baguette, result);
+		
+		if(result.hasErrors()) {
+			model.addAttribute("baguette", iBaguette.findAll());
+			
+			return "baguette/form";
+		}
+		
+		if(idSorcier != null) {
+			Optional<Sorcier> optSorcier = iSorcier.findById(idSorcier);
+			
+			if(optSorcier.isPresent()) {
+				baguette.setSorcier(optSorcier.get());
+			}
+		}
+		
+		baguette = iBaguette.save(baguette);
+		
+	
+		return "redirect:../baguette";
+	}
+	
+	@GetMapping("/cancel")
+	public String cancel() {
+
+		return "forward:/baguette";
+	}
+
+	@GetMapping("/delete")
+	public String delete(@RequestParam Integer id) {
+		iBaguette.deleteById(id);
+
+		return "redirect:../baguette";
+	}
 
 }
