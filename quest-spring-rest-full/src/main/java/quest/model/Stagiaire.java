@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "stagiaire")
 @NamedQuery(name = "Stagiaire.searchByEmail", query = "select s from Stagiaire s where s.email = :email")
@@ -31,6 +33,7 @@ public class Stagiaire {
 
 	@JoinColumn(name = "filiere")
 	@ManyToOne
+	@JsonIgnore
 	private Filiere filiere;
 
 	@Version

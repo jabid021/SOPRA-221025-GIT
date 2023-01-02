@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "filiere")
 public class Filiere {
@@ -42,9 +44,11 @@ public class Filiere {
 	private LocalDate fin;
 
 	@OneToMany(mappedBy = "filiere")
+	@JsonIgnore
 	private List<Stagiaire> stagiaires;
 
 	@ManyToMany
+	@JsonIgnore
 	private List<Matiere> matieres;
 
 	@Version
