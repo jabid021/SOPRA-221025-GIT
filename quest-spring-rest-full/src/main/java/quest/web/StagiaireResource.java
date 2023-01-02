@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -48,10 +49,21 @@ public class StagiaireResource {
 
 	@PostMapping("")
 	public Stagiaire create(@Valid @RequestBody Stagiaire stagiaire, BindingResult result) {
-		if(result.hasErrors()) {
+		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le stagiaire n'a pu être créé");
 		}
-		
+
+		stagiaire = daoStagiaire.save(stagiaire);
+
+		return stagiaire;
+	}
+
+	@PutMapping("/{id}")
+	public Stagiaire update(@PathVariable Integer id, @RequestBody Stagiaire stagiaire) {
+		if (id != stagiaire.getId() || !daoStagiaire.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+
 		stagiaire = daoStagiaire.save(stagiaire);
 
 		return stagiaire;

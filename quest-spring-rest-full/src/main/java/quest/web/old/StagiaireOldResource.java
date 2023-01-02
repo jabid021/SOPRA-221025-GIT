@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -65,6 +66,17 @@ public class StagiaireOldResource {
 		stagiaire = daoStagiaire.save(stagiaire);
 		
 		return new ResponseEntity<>(stagiaire, HttpStatus.CREATED);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Stagiaire> update(@PathVariable Integer id, @RequestBody Stagiaire stagiaire) {
+		if(id != stagiaire.getId() || !daoStagiaire.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+		}
+		
+		stagiaire = daoStagiaire.save(stagiaire);
+		
+		return new ResponseEntity<>(stagiaire, HttpStatus.OK);
 	}
 
 }

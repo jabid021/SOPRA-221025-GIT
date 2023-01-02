@@ -10,6 +10,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="ordinateur")
 public class Ordinateur {
@@ -21,8 +23,9 @@ public class Ordinateur {
 	private int ram;
 	
 	
-	@JoinColumn(name="stagiaire",nullable = false)
+	@JoinColumn(name="stagiaire")
 	@OneToOne
+	@JsonIgnore
 	private Stagiaire stagiaire;
 	
 	@Version
