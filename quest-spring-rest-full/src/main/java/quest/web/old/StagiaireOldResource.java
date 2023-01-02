@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -118,6 +119,17 @@ public class StagiaireOldResource {
 		Stagiaire stagiaireResult = daoStagiaire.save(stagiaire);
 		
 		return new ResponseEntity<>(stagiaireResult, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
+		if(!daoStagiaire.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		
+		daoStagiaire.deleteById(id);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 
