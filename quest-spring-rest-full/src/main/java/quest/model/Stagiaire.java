@@ -12,7 +12,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.Size;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "stagiaire")
@@ -21,22 +22,27 @@ public class Stagiaire {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 
 	@Column(length = 25, nullable = false)
 	@Size(min = 2, max = 25, message = "Le nom doit comporter entre 2 et 25 caractères")
+	@JsonView(Views.ViewBase.class)
 	private String nom;
 	@Column(length = 25)
+	@JsonView(Views.ViewBase.class)
 	private String prenom;
 	@Column(length = 25)
+	@JsonView(Views.ViewBase.class)
 	private String email;
 
 	@JoinColumn(name = "filiere")
 	@ManyToOne
-	@JsonIgnore
+	@JsonView(Views.ViewStagiaireDetail.class)
 	private Filiere filiere;
 
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 
 	public Stagiaire() {

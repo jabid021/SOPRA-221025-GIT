@@ -18,7 +18,10 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "filiere")
@@ -26,32 +29,37 @@ public class Filiere {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 
 	@Column(length = 50, nullable = false)
 	@NotEmpty(message = "Le libellé est obligatoire")
 	@Size(max = 50, message = "Le libellé ne peut comporter que 50 caractères maximum")
+	@JsonView(Views.ViewBase.class)
 	private String libelle;
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "La date de début est obligatoire")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate debut;
 
 	@Column(nullable = false)
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@NotNull(message = "La date de fin est obligatoire")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate fin;
 
 	@OneToMany(mappedBy = "filiere")
-	@JsonIgnore
+	@JsonView(Views.ViewFiliereWithStagiaires.class)
 	private List<Stagiaire> stagiaires;
 
 	@ManyToMany
-	@JsonIgnore
+
 	private List<Matiere> matieres;
 
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 
 	public Filiere() {

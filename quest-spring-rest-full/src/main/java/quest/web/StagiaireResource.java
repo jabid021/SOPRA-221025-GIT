@@ -23,8 +23,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import quest.dao.IDAOStagiaire;
 import quest.model.Stagiaire;
+import quest.model.Views;
 
 @RestController
 @RequestMapping("/stagiaires")
@@ -35,13 +38,15 @@ public class StagiaireResource {
 	private IDAOStagiaire daoStagiaire;
 
 	@GetMapping("")
-	public List<Stagiaire> findall() {
+	@JsonView(Views.ViewStagiaire.class)
+	public List<Stagiaire> findAll() {
 		List<Stagiaire> stagiaires = daoStagiaire.findAll();
 
 		return stagiaires;
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.ViewStagiaireDetail.class)
 	public Stagiaire findById(@PathVariable Integer id) {
 		Optional<Stagiaire> optStagiaire = daoStagiaire.findById(id);
 
@@ -53,6 +58,7 @@ public class StagiaireResource {
 	}
 
 	@PostMapping("")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire create(@Valid @RequestBody Stagiaire stagiaire, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le stagiaire n'a pu être créé");
@@ -64,6 +70,7 @@ public class StagiaireResource {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire update(@PathVariable Integer id, @RequestBody Stagiaire stagiaire) {
 		if (id != stagiaire.getId() || !daoStagiaire.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -75,6 +82,7 @@ public class StagiaireResource {
 	}
 
 	@PatchMapping("/{id}")
+	@JsonView(Views.ViewStagiaire.class)
 	public Stagiaire partialUpdate(@PathVariable Integer id, @RequestBody Map<String, Object> fields) {
 		Optional<Stagiaire> optStagiaire = daoStagiaire.findById(id);
 
