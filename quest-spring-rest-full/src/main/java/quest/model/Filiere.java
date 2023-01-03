@@ -18,9 +18,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
@@ -51,11 +48,11 @@ public class Filiere {
 	private LocalDate fin;
 
 	@OneToMany(mappedBy = "filiere")
-	@JsonView(Views.ViewFiliereWithStagiaires.class)
+	@JsonView({ Views.ViewFiliereWithStagiaires.class, Views.ViewFiliereWithAll.class })
 	private List<Stagiaire> stagiaires;
 
 	@ManyToMany
-
+	@JsonView({ Views.ViewFiliereWithMatieres.class, Views.ViewFiliereWithAll.class })
 	private List<Matiere> matieres;
 
 	@Version

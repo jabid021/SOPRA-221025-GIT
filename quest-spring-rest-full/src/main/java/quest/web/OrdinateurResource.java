@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import quest.dao.IDAOOrdinateur;
 import quest.model.Ordinateur;
+import quest.model.Views;
 
 @RestController
 @RequestMapping("/ordinateurs")
@@ -31,6 +34,7 @@ public class OrdinateurResource {
 	private IDAOOrdinateur daoOrdinateur;
 
 	@GetMapping("")
+	@JsonView(Views.ViewOrdinateur.class)
 	public List<Ordinateur> findall() {
 		List<Ordinateur> ordinateurs = daoOrdinateur.findAll();
 
@@ -38,7 +42,20 @@ public class OrdinateurResource {
 	}
 
 	@GetMapping("/{id}")
+	@JsonView(Views.ViewOrdinateur.class)
 	public Ordinateur findById(@PathVariable Integer id) {
+		Optional<Ordinateur> optOrdinateur = daoOrdinateur.findById(id);
+
+		if (optOrdinateur.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		return optOrdinateur.get();
+	}
+	
+	@GetMapping("/{id}/detail")
+	@JsonView(Views.ViewOrdinateurWithStagiaire.class)
+	public Ordinateur detailById(@PathVariable Integer id) {
 		Optional<Ordinateur> optOrdinateur = daoOrdinateur.findById(id);
 
 		if (optOrdinateur.isEmpty()) {
@@ -49,6 +66,7 @@ public class OrdinateurResource {
 	}
 
 	@PostMapping("")
+	@JsonView(Views.ViewOrdinateur.class)
 	public Ordinateur create(@Valid @RequestBody Ordinateur ordinateur, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le ordinateur n'a pu être créé");
@@ -60,6 +78,7 @@ public class OrdinateurResource {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewOrdinateur.class)
 	public Ordinateur update(@PathVariable Integer id, @RequestBody Ordinateur ordinateur) {
 		if (id != ordinateur.getId() || !daoOrdinateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

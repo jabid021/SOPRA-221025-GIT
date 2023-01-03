@@ -22,7 +22,9 @@ import org.springframework.web.server.ResponseStatusException;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import quest.dao.IDAOFiliere;
+import quest.dao.IDAOStagiaire;
 import quest.model.Filiere;
+import quest.model.Stagiaire;
 import quest.model.Views;
 
 @RestController
@@ -32,6 +34,9 @@ public class FiliereResource {
 
 	@Autowired
 	private IDAOFiliere daoFiliere;
+	
+	@Autowired
+	private IDAOStagiaire daoStagiaire;
 
 	@GetMapping("")
 	@JsonView(Views.ViewFiliere.class)
@@ -63,6 +68,35 @@ public class FiliereResource {
 		}
 
 		return optFiliere.get();
+	}
+	
+	@GetMapping("/{id}/with-matieres")
+	@JsonView(Views.ViewFiliereWithMatieres.class)
+	public Filiere findByIdWithMatieres(@PathVariable Integer id) {
+		Optional<Filiere> optFiliere = daoFiliere.findByIdWithMatieres(id);
+
+		if (optFiliere.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		return optFiliere.get();
+	}
+	
+	@GetMapping("/{id}/with-all")
+	@JsonView(Views.ViewFiliereWithAll.class)
+	public Filiere findByIdWithAll(@PathVariable Integer id) {
+		Optional<Filiere> optFiliere = daoFiliere.findByIdWithMatieres(id);		
+
+		if (optFiliere.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		
+		List<Stagiaire> stagiaires = daoStagiaire.findAllByFiliere(id);
+		
+		Filiere filiere = optFiliere.get();
+		filiere.setStagiaires(stagiaires);
+
+		return filiere;
 	}
 
 	@PostMapping("")

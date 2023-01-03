@@ -10,25 +10,29 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name="ordinateur")
 public class Ordinateur {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Column(length = 15,nullable=false)
+	@JsonView(Views.ViewBase.class)
 	private String marque;
+	@JsonView(Views.ViewBase.class)
 	private int ram;
 	
 	
 	@JoinColumn(name="stagiaire")
 	@OneToOne
-	@JsonIgnore
+	@JsonView(Views.ViewOrdinateurWithStagiaire.class)
 	private Stagiaire stagiaire;
 	
 	@Version
+	@JsonView(Views.ViewBase.class)
 	private int version;
 	
 	public Ordinateur() {
