@@ -9,24 +9,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name="competence")
 public class Competence {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	
 	@Column(name="utilisation_restante")
+	@JsonView(Views.ViewBase.class)
 	private int utilisationRestante;
 	
 	@JoinColumn(name="sorcier_id")
 	@ManyToOne
+	@JsonView({ Views.ViewCompetenceWithSorcier.class, Views.ViewCompetenceWithAll.class })
 	private Sorcier utilisateur;
 	
 	
 	@JoinColumn(name="sort")
 	@ManyToOne
+	@JsonView({ Views.ViewCompetenceWithSort.class, Views.ViewCompetenceWithAll.class })
 	private Sort sort;
 	
 	public Competence() {

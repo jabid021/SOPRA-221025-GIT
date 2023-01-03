@@ -6,14 +6,21 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Table(name = "sort")
 public class Sort {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
+	
+	@JsonView(Views.ViewBase.class)
 	private String libelle;
+	
+	@JsonView(Views.ViewBase.class)
 	private int puissance;
 
 	public Sort() {
