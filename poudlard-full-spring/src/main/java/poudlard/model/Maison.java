@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.swing.text.View;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Table(name = "maison")
@@ -17,15 +20,19 @@ public class Maison {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
-
+	
+	@JsonView(Views.ViewBase.class)
 	private String nom;
 
 	@JoinColumn(name = "principal_id")
 	@OneToOne
+	@JsonView(Views.ViewBase.class)
 	private Professeur principal;
 
 	@OneToMany(mappedBy = "maison")
+	@JsonView(Views.ViewBase.class)
 	private List<Eleve> eleves;
 
 	public Maison() {
