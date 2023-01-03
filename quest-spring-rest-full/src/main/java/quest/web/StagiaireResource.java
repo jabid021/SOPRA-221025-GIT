@@ -1,7 +1,10 @@
 package quest.web;
 
 import java.lang.reflect.Field;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
@@ -28,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import quest.dao.IDAOStagiaire;
 import quest.model.Stagiaire;
 import quest.model.Views;
+import quest.web.dto.StagiaireDTO;
 
 @RestController
 @RequestMapping("/stagiaires")
@@ -55,6 +59,34 @@ public class StagiaireResource {
 		}
 
 		return optStagiaire.get();
+	}
+	
+	@GetMapping("/{id}/dto")
+	public StagiaireDTO findDTOById(@PathVariable Integer id) {
+		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		
+		Optional<Stagiaire> optStagiaire = daoStagiaire.findById(id);
+
+		if (optStagiaire.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		Stagiaire stagiaire = optStagiaire.get();
+		
+		StagiaireDTO stagiaireDTO = new StagiaireDTO();
+		
+		stagiaireDTO.setIdentifiant(stagiaire.getId());
+		stagiaireDTO.setNom(stagiaire.getNom());
+		stagiaireDTO.setPrenom(stagiaire.getPrenom());
+		stagiaireDTO.setEmail(stagiaire.getEmail());
+		stagiaireDTO.setIdFiliere(stagiaire.getFiliere().getId());
+		stagiaireDTO.setNomFiliere(stagiaire.getFiliere().getLibelle());
+		stagiaireDTO.setDebutFiliere(stagiaire.getFiliere().getDebut());
+		stagiaireDTO.setFinFiliere(stagiaire.getFiliere().getFin());
+		stagiaireDTO.setDebutFiliereString(dtf.format(stagiaire.getFiliere().getDebut()));
+		stagiaireDTO.setFinFiliereString(dtf.format(stagiaire.getFiliere().getFin()));
+		
+		return stagiaireDTO;
 	}
 
 	@PostMapping("")
