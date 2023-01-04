@@ -2,9 +2,7 @@ package quest.web;
 
 import java.lang.reflect.Field;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
@@ -60,11 +58,11 @@ public class StagiaireResource {
 
 		return optStagiaire.get();
 	}
-	
+
 	@GetMapping("/{id}/dto")
 	public StagiaireDTO findDTOById(@PathVariable Integer id) {
 		final DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		
+
 		Optional<Stagiaire> optStagiaire = daoStagiaire.findById(id);
 
 		if (optStagiaire.isEmpty()) {
@@ -72,9 +70,9 @@ public class StagiaireResource {
 		}
 
 		Stagiaire stagiaire = optStagiaire.get();
-		
+
 		StagiaireDTO stagiaireDTO = new StagiaireDTO();
-		
+
 		stagiaireDTO.setIdentifiant(stagiaire.getId());
 		stagiaireDTO.setNom(stagiaire.getNom());
 		stagiaireDTO.setPrenom(stagiaire.getPrenom());
@@ -85,7 +83,7 @@ public class StagiaireResource {
 		stagiaireDTO.setFinFiliere(stagiaire.getFiliere().getFin());
 		stagiaireDTO.setDebutFiliereString(dtf.format(stagiaire.getFiliere().getDebut()));
 		stagiaireDTO.setFinFiliereString(dtf.format(stagiaire.getFiliere().getFin()));
-		
+
 		return stagiaireDTO;
 	}
 

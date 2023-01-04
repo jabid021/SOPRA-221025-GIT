@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -67,6 +68,7 @@ public class OrdinateurResource {
 
 	@PostMapping("")
 	@JsonView(Views.ViewOrdinateur.class)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Ordinateur create(@Valid @RequestBody Ordinateur ordinateur, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le ordinateur n'a pu être créé");
@@ -79,6 +81,7 @@ public class OrdinateurResource {
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewOrdinateur.class)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Ordinateur update(@PathVariable Integer id, @RequestBody Ordinateur ordinateur) {
 		if (id != ordinateur.getId() || !daoOrdinateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
