@@ -1,6 +1,7 @@
 package quest.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -49,11 +50,11 @@ public class Filiere {
 
 	@OneToMany(mappedBy = "filiere")
 	@JsonView({ Views.ViewFiliereWithStagiaires.class, Views.ViewFiliereWithAll.class })
-	private List<Stagiaire> stagiaires;
+	private List<Stagiaire> stagiaires = new ArrayList<>();
 
 	@ManyToMany
 	@JsonView({ Views.ViewFiliereWithMatieres.class, Views.ViewFiliereWithAll.class })
-	private List<Matiere> matieres;
+	private List<Matiere> matieres = new ArrayList<>();
 
 	@Version
 	@JsonView(Views.ViewBase.class)
