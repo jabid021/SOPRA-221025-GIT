@@ -1,0 +1,62 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des Matières</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Version</th>
+                    <th>Libellé</th>
+                    <th>N° Quest</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let mat of list()">
+                    <td>{{mat.id}}</td>
+                    <td>{{mat.version}}</td>
+                    <td>{{mat.libelle}}</td>
+                    <td>{{mat.quest}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(mat.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="remove(mat.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="formMatiere">
+    <div class="card-header bg-primary text-white display-6">Edition d'une matière</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" [(ngModel)]="formMatiere.id" readonly/>
+        </div>
+        <div class="form-group">
+            <label for="version">Version:</label> <input type="number" class="form-control" id="version" name="version" [(ngModel)]="formMatiere.version" readonly />
+        </div>
+        <div class="form-group">
+            <label for="libelle">Libelle:</label> <input type="text" class="form-control" id="libelle" name="libelle" [(ngModel)]="formMatiere.libelle" />
+        </div>
+        <div class="form-group">
+            <label for="quest">N° Quest:</label> <input type="number" class="form-control" id="quest" name="quest" [(ngModel)]="formMatiere.quest" />
+        </div>
+
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>

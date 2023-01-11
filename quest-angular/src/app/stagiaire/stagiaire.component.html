@@ -1,0 +1,75 @@
+<div class="card mt-3">
+    <div class="card-header bg-primary text-white display-6">Liste des stagiaires</div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Version</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Email</th>
+                    <th>Filière</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let stag of list()">
+                    <td>{{stag.id}}</td>
+                    <td>{{stag.version}}</td>
+                    <td>{{stag.nom}}</td>
+                    <td>{{stag.prenom }}</td>
+                    <td>{{stag.email}}</td>
+                    <td>{{stag.filiere?.id}} - {{stag.filiere?.libelle}}</td>
+                    <td>
+                        <div class="btn-group btn-group-sm">
+                            <a class="btn btn-primary" (click)="edit(stag.id)"><i
+                                    class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-danger" (click)="remove(stag.id)"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="card-footer">
+        <a class="btn btn-success btn-lg" (click)="add()"><i
+            class="bi bi-plus-square"></i></a>
+    </div>
+</div>
+
+<div class="card mt-3" *ngIf="formStagiaire">
+    <div class="card-header bg-primary text-white display-6">Edition d'un stagiaire</div>
+    <div class="card-body">
+        <div class="form-group">
+            <label for="id">Identifiant:</label> <input type="number" class="form-control" id="id" name="id" [(ngModel)]="formStagiaire.id" readonly/>
+        </div>
+        <div class="form-group">
+            <label for="version">Version:</label> <input type="number" class="form-control" id="version" name="version" [(ngModel)]="formStagiaire.version" readonly />
+        </div>
+        <div class="form-group">
+            <label for="nom">Nom:</label> <input type="text" class="form-control" id="nom" name="nom" [(ngModel)]="formStagiaire.nom" />
+        </div>
+        <div class="form-group">
+            <label for="prenom">Prénom:</label> <input type="text" class="form-control" id="prenom" name="prenom" [(ngModel)]="formStagiaire.prenom" />
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label> <input type="email" class="form-control" id="email" name="email" [(ngModel)]="formStagiaire.email" />
+        </div>
+        <div class="form-group">
+            <label for="filiere">Filieres:</label>
+            <select class="form-control" [(ngModel)]="formStagiaire.filiere.id">
+                <option value="">Sélectionner une filière</option>
+                <option *ngFor="let fil of listFiliere()" [value]="fil.id">{{fil.id}} - {{fil.libelle}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group btn-group-lg float-right">
+            <a class="btn btn-success" (click)="save()"><i class="bi bi-check-square-fill"></i></a>
+            <a class="btn btn-warning" (click)="cancel()"><i class="bi bi-backspace-fill"></i></a>
+        </div>
+    </div>
+</div>
