@@ -55,6 +55,17 @@ public class PatientResource {
 		return optPatient.get();
 	}
 	
+	@GetMapping("/{SS}")
+	@JsonView(Views.ViewPatient.class)
+	public Patient findBySS(@PathVariable String numeroSecuriteSociale) {
+		Optional<Patient> optPatient = repoPatient.findBySS(numeroSecuriteSociale);
+
+		if (optPatient.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+
+		return optPatient.get();
+	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewPatient.class)
