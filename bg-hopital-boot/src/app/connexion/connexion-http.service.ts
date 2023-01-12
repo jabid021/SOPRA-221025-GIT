@@ -9,7 +9,6 @@ import { Compte } from '../model';
 export class ConnexionHttpService {
 
   serviceUrl: string;
-  connexions: Array<Compte> = new Array<Compte>();
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
     this.serviceUrl = appConfig.backEndUrl + "";
