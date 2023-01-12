@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Ordinateur } from '../model';
-import { OrdinateurService } from './ordinateur.service';
+import { OrdinateurHttpService } from './ordinateur-http.service';
 
 @Component({
   selector: 'app-ordinateur',
@@ -10,7 +10,7 @@ import { OrdinateurService } from './ordinateur.service';
 export class OrdinateurComponent {
   formOrdinateur: Ordinateur = null;
 
-  constructor(private ordinateurService: OrdinateurService) {
+  constructor(private ordinateurService: OrdinateurHttpService) {
   }
 
   list(): Array<Ordinateur> {
@@ -22,7 +22,9 @@ export class OrdinateurComponent {
   }
 
   edit(id: number): void {
-    this.formOrdinateur = {...this.ordinateurService.findById(id)};
+    this.ordinateurService.findById(id).subscribe(resp => {
+      this.formOrdinateur = resp;
+    });
   }
 
   save(): void {

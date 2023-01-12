@@ -68,7 +68,7 @@ public class OrdinateurResource {
 
 	@PostMapping("")
 	@JsonView(Views.ViewOrdinateur.class)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public Ordinateur create(@Valid @RequestBody Ordinateur ordinateur, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le ordinateur n'a pu être créé");
@@ -81,7 +81,7 @@ public class OrdinateurResource {
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewOrdinateur.class)
-	@PreAuthorize("hasRole('ADMIN')")
+	//@PreAuthorize("hasRole('ADMIN')")
 	public Ordinateur update(@PathVariable Integer id, @RequestBody Ordinateur ordinateur) {
 		if (id != ordinateur.getId() || !daoOrdinateur.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

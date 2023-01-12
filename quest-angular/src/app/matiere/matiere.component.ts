@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Matiere } from '../model';
 import { MatiereHttpService } from './matiere-http.service';
-import { MatiereService } from './matiere.service';
 
 @Component({
   selector: 'app-matiere',

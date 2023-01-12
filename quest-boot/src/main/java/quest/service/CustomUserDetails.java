@@ -23,11 +23,11 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		List<String> roles = new ArrayList<>();
+		List<String> roles = new ArrayList<String>();
 
 		utilisateur.getRoles().forEach(role -> roles.add("ROLE_" + role.name()));
 
-		return AuthorityUtils.createAuthorityList(roles.toArray(new String[roles.size()]));
+		return AuthorityUtils.createAuthorityList(roles.toArray(new String[0]));
 	}
 
 	@Override
