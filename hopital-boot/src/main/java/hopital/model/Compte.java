@@ -21,8 +21,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 		include = JsonTypeInfo.As.PROPERTY, 
 		property = "type")
 @JsonSubTypes({ 
-	@Type(value = Medecin.class, name = "bibliothecaire"), 
-	@Type(value = Secretaire.class, name = "inscrit")})
+	@Type(value = Medecin.class, name = "medecin"), 
+	@Type(value = Secretaire.class, name = "secretaire")})
 public abstract class Compte {
 
 	@Id
