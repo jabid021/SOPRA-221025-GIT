@@ -21,9 +21,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import hopital.model.Inscription;
+import hopital.model.Compte;
 import hopital.model.Views;
-import hopital.repository.IInscriptionRepository;
+import hopital.repository.ICompteRepository;
+
 
 
 @RestController
@@ -32,71 +33,71 @@ import hopital.repository.IInscriptionRepository;
 public class InscriptionResource {
 	
 	@Autowired
-	private IInscriptionRepository daoInscription;
+	private ICompteRepository daoCompte;
 
 	@GetMapping("")
 	@JsonView(Views.ViewInscription.class)
-	public List<Inscription> findall() {
-		List<Inscription> inscriptions = daoInscription.findAll();
+	public List<Compte> findall() {
+		List<Compte> inscriptions = daoCompte.findAll();
 
 		return inscriptions;
 	}
 
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewInscription.class)
-	public Inscription findById(@PathVariable Integer id) {
-		Optional<Inscription> optInscription = daoInscription.findById(id);
+	public Compte findById(@PathVariable Integer id) {
+		Optional<Compte> optCompte = daoCompte.findById(id);
 
-		if (optInscription.isEmpty()) {
+		if (optCompte.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 
-		return optInscription.get();
+		return optCompte.get();
 	}
 	
 	@GetMapping("/{id}/detail")
 	@JsonView(Views.ViewInscriptionWithMedecin.class)
-	public Inscription detailById(@PathVariable Integer id) {
-		Optional<Inscription> optInscription = daoInscription.findById(id);
+	public Compte detailById(@PathVariable Integer id) {
+		Optional<Compte> optCompte = daoCompte.findById(id);
 
-		if (optInscription.isEmpty()) {
+		if (optCompte.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 
-		return optInscription.get();
+		return optCompte.get();
 	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewInscription.class)
-	public Inscription create(@Valid @RequestBody Inscription inscription, BindingResult result) {
+	public Compte create(@Valid @RequestBody Compte inscription, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le inscription n'a pu être créé");
 		}
 
-		inscription = daoInscription.save(inscription);
+		inscription = daoCompte.save(inscription);
 
 		return inscription;
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewInscription.class)
-	public Inscription update(@PathVariable Integer id, @RequestBody Inscription inscription) {
-		if (id != inscription.getId() || !daoInscription.existsById(id)) {
+	public Compte update(@PathVariable Integer id, @RequestBody Compte inscription) {
+		if (id != inscription.getId() || !daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 
-		inscription = daoInscription.save(inscription);
+		inscription = daoCompte.save(inscription);
 
 		return inscription;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Integer id) {
-		if (!daoInscription.existsById(id)) {
+		if (!daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
 
-		daoInscription.deleteById(id);
+		daoCompte.deleteById(id);
 	}
 	
 

@@ -15,7 +15,7 @@ import hopital.repository.ICompteRepository;
 
 
 @RestController
-@RequestMapping("/connexions")
+@RequestMapping("")
 @CrossOrigin("*")
 public class ConnexionResource {
 	
