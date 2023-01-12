@@ -1,0 +1,15 @@
+<h1>Bonjour Medecin</h1>
+<button (click)="affichervisites()" >Afficher mes visites</button>
+<button (click)="afficherAttente()">afficher liste d'attente</button>
+<button (click)="recevoirPatient()">Recevoir un patient</button>
+
+<div *ngIf="visite">
+
+visite s'affiche
+</div>
+
+<div *ngIf="attente">
+
+    attente s'affiche
+
+</div>
