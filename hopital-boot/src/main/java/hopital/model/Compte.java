@@ -8,11 +8,21 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type_compte", columnDefinition = "enum('Medecin', 'Secretaire')")
+@JsonTypeInfo(
+		use = JsonTypeInfo.Id.NAME, 
+		include = JsonTypeInfo.As.PROPERTY, 
+		property = "type")
+@JsonSubTypes({ 
+	@Type(value = Medecin.class, name = "bibliothecaire"), 
+	@Type(value = Secretaire.class, name = "inscrit")})
 public abstract class Compte {
 
 	@Id
