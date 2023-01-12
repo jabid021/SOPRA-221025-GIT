@@ -10,7 +10,10 @@ public class Views {
 	public static class ViewInscription extends ViewBase{}
 	
 	public static class ViewInscriptionWithMedecin extends ViewInscription{}
+	
 	public static class ViewInscriptionWithSecretaire extends ViewInscription{}
+	
+	public static class ViewSecretaire extends ViewBase {}
 	
 	
 	

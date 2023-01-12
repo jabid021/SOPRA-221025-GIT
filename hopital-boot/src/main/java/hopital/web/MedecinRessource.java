@@ -6,9 +6,13 @@ import java.util.Queue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import hopital.model.Medecin;
 import hopital.model.Patient;
 import hopital.model.Visite;
 import hopital.repository.ICompteRepository;
@@ -40,4 +44,12 @@ public class MedecinRessource {
 	Queue<Patient> patients = fileatente.getFileAttente();
 	return patients;
 	}
+	
+	@PostMapping("/{salle}")
+	public Medecin choixSalle(@PathVariable Integer salle, @RequestBody Medecin medecin) {
+		medecin.setSalle(salle);
+		medecin= daoCompte.save(medecin);
+		return medecin;	
+	}
+	
 }
