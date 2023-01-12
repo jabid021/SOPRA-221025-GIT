@@ -27,6 +27,14 @@ public interface ICompteRepository extends JpaRepository<Compte, Integer>{
 	Optional<Secretaire> findSecretaireById(Integer id);
 	@Query("from Inscription")
 	List<Inscription> findAllInscription();
+<<<<<<< Updated upstream
 	@Query("SELECT c from Compte c where c.login = :login and c.password =: password")
 	Optional<Compte>findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
 }
+=======
+	
+	
+	@Query("SELECT i from Inscription i where i.login=:login and i.mdp = :mdp and i.choix= :choix")
+	public List<Inscription> findAllByInscriptionChoix(String choix);
+	}
+>>>>>>> Stashed changes
