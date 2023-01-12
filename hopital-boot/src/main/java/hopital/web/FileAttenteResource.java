@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
@@ -37,6 +39,7 @@ public class FileAttenteResource {
 	@JsonView(Views.ViewPatient.class)
 	public Queue<Patient> getFileAttente() {
 		Queue<Patient> filedAtt = fileAttente.getFileAttente();
+		
 		return filedAtt;
 	}
 
@@ -51,8 +54,11 @@ public class FileAttenteResource {
 
 	@PostMapping("/add")
 	@JsonView(Views.ViewPatient.class)
-	public void addPatient(Patient patient) {
+	public Patient addPatient(@RequestBody Patient patient) {
 		fileAttente.addPatient(patient);
+		System.out.println(patient.toString());
+		
+		return fileAttente.peekPatient();
 	}
 
 	@DeleteMapping("/poll")
@@ -63,7 +69,7 @@ public class FileAttenteResource {
 	
 	@DeleteMapping("/{id}")
 	@JsonView(Views.ViewPatient.class)
-	public void removePatient(Integer idPatient) {
+	public void removePatient(@PathVariable Integer idPatient) {
 		Optional<Patient> optPatient = repoPatient.findById(idPatient);
 		if (optPatient.isEmpty()) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
