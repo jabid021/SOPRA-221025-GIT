@@ -21,6 +21,9 @@ public interface ICompteRepository extends JpaRepository<Compte, Integer>{
 	@Query("from Medecin m where m.id = ?1")
 	Optional<Medecin> findMedecinById(Integer id);
 	
+	@Query("from Medecin m left join fetch m.visites where m.id=?1")
+	Optional<Medecin> findMedecinByIdWithVisites(Integer id);
+	
 	@Query("from Secretaire s where s.id = ?1")
 	Optional<Secretaire> findSecretaireById(Integer id);
 }
