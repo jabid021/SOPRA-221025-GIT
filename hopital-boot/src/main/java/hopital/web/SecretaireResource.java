@@ -56,26 +56,26 @@ public class SecretaireResource {
 
 	@PostMapping("")
 	@JsonView(Views.ViewSecretaire.class)
-	public Secretaire create(@Valid @RequestBody Secretaire filiere, BindingResult result) {
+	public Secretaire create(@Valid @RequestBody Secretaire secretaire, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le filiere n'a pu être créé");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le secretaire n'a pu être créé");
 		}
 
-		filiere = daoCompte.save(filiere);
+		secretaire = daoCompte.save(secretaire);
 
-		return filiere;
+		return secretaire;
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewSecretaire.class)
-	public Secretaire update(@PathVariable Integer id, @RequestBody Secretaire filiere) {
-		if (id != filiere.getId() || !daoCompte.existsById(id)) {
+	public Secretaire update(@PathVariable Integer id, @RequestBody Secretaire secretaire) {
+		if (id != secretaire.getId() || !daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 
-		filiere = daoCompte.save(filiere);
+		secretaire = daoCompte.save(secretaire);
 
-		return filiere;
+		return secretaire;
 	}
 
 	@DeleteMapping("/{id}")

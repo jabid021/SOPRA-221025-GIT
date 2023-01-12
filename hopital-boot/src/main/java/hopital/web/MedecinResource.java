@@ -67,26 +67,26 @@ public class MedecinResource {
 
 	@PostMapping("")
 	@JsonView(Views.ViewMedecin.class)
-	public Medecin create(@Valid @RequestBody Medecin filiere, BindingResult result) {
+	public Medecin create(@Valid @RequestBody Medecin medecin, BindingResult result) {
 		if (result.hasErrors()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le filiere n'a pu être créé");
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le medecin n'a pu être créé");
 		}
 
-		filiere = daoCompte.save(filiere);
+		medecin = daoCompte.save(medecin);
 
-		return filiere;
+		return medecin;
 	}
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewMedecin.class)
-	public Medecin update(@PathVariable Integer id, @RequestBody Medecin filiere) {
-		if (id != filiere.getId() || !daoCompte.existsById(id)) {
+	public Medecin update(@PathVariable Integer id, @RequestBody Medecin medecin) {
+		if (id != medecin.getId() || !daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
 		}
 
-		filiere = daoCompte.save(filiere);
+		medecin = daoCompte.save(medecin);
 
-		return filiere;
+		return medecin;
 	}
 
 	@DeleteMapping("/{id}")
