@@ -10,24 +10,33 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+
 @Entity
 public class Visite {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero")
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
+	@JsonView(Views.ViewBase.class)
 	private double prix = 20;
+	@JsonView(Views.ViewBase.class)
 	private int salle;
 	@Column(name = "date_visite")
+	@JsonView(Views.ViewBase.class)
 	private LocalDate dateVisite;
 
 	@ManyToOne
 	@JoinColumn(name = "id_patient")
+	@JsonView(Views.ViewVisite.class)
 	private Patient patient;
 
 	@ManyToOne
 	@JoinColumn(name = "id_medecin")
+	@JsonView(Views.ViewVisite.class)
 	private Medecin medecin;
 
 	public Visite() {
