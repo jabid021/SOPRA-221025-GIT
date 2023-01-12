@@ -63,7 +63,7 @@ public class MedecinRessource {
 		Patient patient = patients.peek();
 		Visite visite = new Visite(patient, medecin);
 		visite=daoVisite.save(visite);
-		patients.poll();
+		fileatente.removePatient(patient);
 	}
 
 
