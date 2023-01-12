@@ -29,10 +29,6 @@ public interface ICompteRepository extends JpaRepository<Compte, Integer>{
 	@Query("SELECT c from Compte c where c.login = :login and c.password =:password")
 	Optional<Compte>findByLoginAndPassword(@Param("login") String login, @Param("password") String password);
 
-	List<Compte> findAllInscription();
-
-	 @Query("SELECT i from Inscription i where i.login=:login and i.mdp = :mdp and i.choix= :choix") 
-	 public List<Compte> findAllByInscriptionChoix(@Param("login") String login, @Param("mdp") String password, @Param("choix") String choix);
 }
 	 
 
