@@ -41,7 +41,11 @@ export class MatiereHttpService {
     this.http.delete<void>(this.serviceUrl + id).subscribe(resp => {
       this.load();
     });
+
+   
   }
+
+
 
   private load(): void {
     this.http.get<Array<Matiere>>(this.serviceUrl).subscribe(response => {
