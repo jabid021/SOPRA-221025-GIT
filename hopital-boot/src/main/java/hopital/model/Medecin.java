@@ -6,14 +6,18 @@ import java.util.List;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.swing.text.View;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @DiscriminatorValue("Medecin")
 public class Medecin extends Compte {
 
 	@OneToMany(mappedBy = "medecin")
+	@JsonView(Views.ViewCompteMed.class)
 	private List<Visite> visites = new ArrayList<>();
-
+	@JsonView(Views.ViewCompteMed.class)
 	private transient int salle;
 
 	public Medecin() {
