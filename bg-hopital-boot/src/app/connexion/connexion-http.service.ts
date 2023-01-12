@@ -12,8 +12,7 @@ export class ConnexionHttpService {
   connexions: Array<Compte> = new Array<Compte>();
 
   constructor(private http: HttpClient, private appConfig: AppConfigService) {
-    this.serviceUrl = appConfig.backEndUrl + "matieres/";
-    this.load();
+    this.serviceUrl = appConfig.backEndUrl + "";
    }
 
 
@@ -21,12 +20,7 @@ export class ConnexionHttpService {
     let authDTO = {"login": login, "password": password};
 
 
-    this.http.post("dsfjkfdhjs", authDTO)
+    this.http.post("http://www.localhost:4200", authDTO)
   }
 
-  private load(): void {
-    this.http.get<Array<Compte>>(this.serviceUrl).subscribe(response => {
-      this.connexions = response;
-    });
-  }
 }
