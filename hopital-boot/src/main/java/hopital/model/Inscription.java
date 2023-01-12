@@ -21,6 +21,8 @@ public class Inscription {
 	private String login;
 	@JsonView(Views.ViewBase.class)
 	private Integer mdp;
+	@JsonView(Views.ViewBase.class)
+	private String choix;
 	
 	public Inscription() {
 	}
@@ -31,10 +33,11 @@ public class Inscription {
 	 * @param login
 	 * @param mdp
 	 */
-	public Inscription(Integer id, String login, Integer mdp) {
+	public Inscription(Integer id, String login, Integer mdp, String choix) {
 		super();
 		this.id = id;
 		this.login = login;
+		this.choix = choix;
 		this.mdp = mdp;
 	}
 
@@ -61,6 +64,16 @@ public class Inscription {
 
 	public void setMdp(Integer mdp) {
 		this.mdp = mdp;
+	}
+
+
+	public String getChoix() {
+		return choix;
+	}
+
+
+	public void setChoix(String choix) {
+		this.choix = choix;
 	}
 
 
