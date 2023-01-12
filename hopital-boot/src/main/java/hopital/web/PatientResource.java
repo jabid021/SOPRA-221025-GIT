@@ -1,5 +1,7 @@
 package hopital.web;
 
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,7 +25,11 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import hopital.model.Patient;
 import hopital.model.Views;
+import hopital.model.Visite;
 import hopital.repository.IPatientRepository;
+import hopital.repository.IVisiteRepository;
+import hopital.web.dto.PatientDTO;
+import hopital.web.dto.VisiteDTO;
 
 
 @RestController
@@ -34,6 +40,8 @@ public class PatientResource {
 	@Autowired
 	private IPatientRepository repoPatient;
 	
+	@Autowired
+	private IVisiteRepository daoVisite;
 
 	@GetMapping("")
 	@JsonView(Views.ViewPatient.class)
@@ -54,6 +62,42 @@ public class PatientResource {
 
 		return optPatient.get();
 	}
+	
+	@GetMapping("/{id}/detail")				//JJ
+	public PatientDTO findDTOById(@PathVariable Integer id) {
+		Optional<Patient> optPatient = repoPatient.findById(id);
+
+		if (optPatient.isEmpty()) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		
+		Patient patient = optPatient.get();
+		PatientDTO patientDTO = new PatientDTO();
+		VisiteDTO visitedto = new VisiteDTO();
+		
+		patientDTO.setIdPatient(patient.getId());
+		patientDTO.setNumeroSecuriteSociale(patient.getNumeroSecuriteSociale());
+		patientDTO.setNom(patient.getNom());
+		patientDTO.setPrenom(patient.getPrenom());
+		
+		List<Visite> visites = daoVisite.findAllByPatient(patientDTO.getIdPatient());
+		List<VisiteDTO> visitesDTO = new ArrayList<>();
+		
+		for (Visite visite : visites) {
+		
+			visitedto.setIdVisite(visite.getId());
+			visitedto.setSalle(visite.getSalle());
+			visitedto.setDateVisite(visite.getDateVisite());
+			visitedto.setPrix(visite.getPrix());
+			visitedto.setIdentifiantMedecin(visite.getMedecin().getId());
+			visitedto.setLoginMedecin(visite.getMedecin().getLogin());
+			
+			visitesDTO.add(visitedto);
+		}
+			patientDTO.setVisites(visitesDTO);
+			return patientDTO;
+	}
+
 	
 	@GetMapping("/{SS}")
 	@JsonView(Views.ViewPatient.class)

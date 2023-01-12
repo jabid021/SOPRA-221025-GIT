@@ -17,7 +17,7 @@ public class Patient {
 	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Column(name = "numero_ss", unique = true)
-	@JsonView(Views.ViewBase.class)
+	@JsonView(Views.ViewBase.class) 
 	private String numeroSecuriteSociale;
 	@Column(length = 50, nullable = false)
 	@JsonView(Views.ViewBase.class)
