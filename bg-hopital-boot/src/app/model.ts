@@ -38,7 +38,7 @@ export class Visite {
     }
 }
 
-export class Secretaire {
+export class Patient {
     id: number;
     numeroSecuriteSociale: string;
     nom: string;
@@ -54,6 +54,12 @@ export class Secretaire {
 
 export class Medecin {
     visites : Array<Visite> = new Array<Visite>;
+
+    constructor() {
+    }
+}
+
+export class Secretaire {
 
     constructor() {
     }

@@ -14,10 +14,10 @@
 <fieldset>
 <legend> Connexion </legend>
     <table>
-      <tr><td>  Login  </td>  <td>  <input required type="email" placeholder="lorem@mail.fr"></td></tr>
-      <tr><td>  Mot de passe  </td>  <td>  <input required placeholder="********" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre"></td></tr>
+      <tr><td>  Login  </td>  <td>  <input required type="email" placeholder="lorem@mail.fr" [(ngModel)]="auth.login" ></td></tr>
+      <tr><td>  Mot de passe  </td>  <td>  <input required placeholder="********" type="password" pattern="[A-z 0-9 !@#$&*]{4,8}" title="4 à 8 lettre / chiffre" [(ngModel)]="auth.password"></td></tr>
     </table>
   </fieldset>
 
 
-  <input type="submit" value="Envoyer">
+  <a class="bouton" (click)="auth()"><i class="autre"></i></a>

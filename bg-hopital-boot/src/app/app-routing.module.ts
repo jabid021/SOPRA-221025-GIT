@@ -4,9 +4,9 @@ import { ConnexionComponent } from './connexion/connexion.component';
 
 const routes: Routes = [
   {path: "", component: ConnexionComponent, pathMatch: 'full'},
-  {path: "inscription", component: InscriptionComponent},
-  {path: "secretaire", component: SecretaireComponent},
-  {path: "medecin", component: MedecinComponent},
+  //{path: "inscription", component: InscriptionComponent},
+ // {path: "secretaire", component: SecretaireComponent},
+  //{path: "medecin", component: MedecinComponent},
 ];
 
 @NgModule({
