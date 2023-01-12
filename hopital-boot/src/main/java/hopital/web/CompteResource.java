@@ -56,7 +56,7 @@ public class CompteResource {
 	//****************************************************** POUR TOUT LES MEDECINS ****************************************************************//
 
 	@GetMapping("/medecins")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewMedecin.class)
 	public List<Medecin> findAllMedecins() {
 		List<Medecin> comptesMed = daoCompte.findAllMedecin();
 
@@ -65,7 +65,7 @@ public class CompteResource {
 	
 	//Compte Medecin by ID
 	@GetMapping("/medecins/{id}")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewMedecin.class)
 	public Medecin findByIdMed(@PathVariable Integer id) {
 		Optional<Medecin> optMedecin = daoCompte.findMedecinById(id);
 
@@ -77,7 +77,7 @@ public class CompteResource {
 	}
 
 	@PostMapping("/addMedecin")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewMedecin.class)
 	public Medecin createMed(@Valid @RequestBody Medecin medecin, BindingResult result) {
 		if (result.hasErrors()) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Le stagiaire n'a pu être créé");
@@ -88,7 +88,7 @@ public class CompteResource {
 		return medecin;
 	}
 	@PutMapping("medecin/{id}")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewMedecin.class)
 	public Medecin updateMed(@PathVariable Integer id, @RequestBody Medecin medecin) {
 		if (id != medecin.getId() || !daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
@@ -101,7 +101,7 @@ public class CompteResource {
 	//****************************************************** POUR TOUTES LES SECRETAIRES ****************************************************************//
 	//Liste de toutes les secretaires
 	@GetMapping("/secretaires")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewCompte.class)
 	public List<Secretaire> findAllSecretaire() {
 		List<Secretaire> comptesSec = daoCompte.findAllSecretaire();
 
@@ -133,7 +133,7 @@ public class CompteResource {
 		return secretaire;
 	}
 	@PutMapping("secretaires/{id}")
-	@JsonView(Views.ViewCompteMed.class)
+	@JsonView(Views.ViewCompte.class)
 	public Secretaire update(@PathVariable Integer id, @RequestBody Secretaire secretaire) {
 		if (id != secretaire.getId() || !daoCompte.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
