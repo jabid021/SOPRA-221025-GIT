@@ -26,7 +26,7 @@ import hopital.model.Views;
 import hopital.repository.ICompteRepository;
 
 @RestController
-@RequestMapping("/medecins")
+@RequestMapping("/secretaires")
 @CrossOrigin("*")
 public class SecretaireResource {
 
@@ -36,9 +36,9 @@ public class SecretaireResource {
 	@GetMapping("")
 	@JsonView(Views.ViewSecretaire.class)
 	public List<Secretaire> findAll() {
-		List<Secretaire> medecins = daoCompte.findAllSecretaire();
+		List<Secretaire> secretaires = daoCompte.findAllSecretaire();
 
-		return medecins;
+		return secretaires;
 	}
 
 	@GetMapping("/{id}")
