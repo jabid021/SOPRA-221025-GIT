@@ -35,37 +35,7 @@ public class InscriptionResource {
 	@Autowired
 	private ICompteRepository daoCompte;
 
-	@GetMapping("")
-	@JsonView(Views.ViewInscription.class)
-	public List<Compte> findall() {
-		List<Compte> inscriptions = daoCompte.findAll();
-
-		return inscriptions;
-	}
-
-	@GetMapping("/{id}")
-	@JsonView(Views.ViewInscription.class)
-	public Compte findById(@PathVariable Integer id) {
-		Optional<Compte> optCompte = daoCompte.findById(id);
-
-		if (optCompte.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-
-		return optCompte.get();
-	}
 	
-	@GetMapping("/{id}/detail")
-	@JsonView(Views.ViewInscriptionWithMedecin.class)
-	public Compte detailById(@PathVariable Integer id) {
-		Optional<Compte> optCompte = daoCompte.findById(id);
-
-		if (optCompte.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-
-		return optCompte.get();
-	}
 
 	@PostMapping("")
 	@JsonView(Views.ViewInscription.class)
@@ -78,27 +48,4 @@ public class InscriptionResource {
 
 		return inscription;
 	}
-
-	@PutMapping("/{id}")
-	@JsonView(Views.ViewInscription.class)
-	public Compte update(@PathVariable Integer id, @RequestBody Compte inscription) {
-		if (id != inscription.getId() || !daoCompte.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-		}
-
-		inscription = daoCompte.save(inscription);
-
-		return inscription;
-	}
-
-	@DeleteMapping("/{id}")
-	public void delete(@PathVariable Integer id) {
-		if (!daoCompte.existsById(id)) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
-
-		daoCompte.deleteById(id);
-	}
-	
-
 }
