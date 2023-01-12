@@ -1,25 +1,21 @@
 package hopital.web;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Queue;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
-import com.fasterxml.jackson.annotation.JsonView;
-
+import hopital.model.Compte;
 import hopital.model.Medecin;
 import hopital.model.Patient;
-import hopital.model.Views;
 import hopital.model.Visite;
 import hopital.repository.ICompteRepository;
 import hopital.repository.IPatientRepository;
@@ -51,16 +47,12 @@ public class MedecinRessource {
 		return patients;
 	}
 
-	@PostMapping("/{salle}")
-	public Medecin choixSalle(@PathVariable Integer salle, @RequestBody Medecin medecin) {
-		medecin.setSalle(salle);
-		medecin= daoCompte.save(medecin);
-		return medecin;	
-	}
-	@PutMapping("")
-	public void recevoirPatient(Medecin medecin){
+	@PostMapping("/{idMedecin}/recevoir")
+	public void recevoirPatient(@PathVariable Integer Idmedecin){
 		Queue<Patient> patients = fileatente.getFileAttente();
 		Patient patient = patients.peek();
+		Optional<Compte> optmedecin = daoCompte.findById(Idmedecin);
+		Medecin medecin = (Medecin) optmedecin.get();
 		Visite visite = new Visite(patient, medecin);
 		visite=daoVisite.save(visite);
 		fileatente.removePatient(patient);
