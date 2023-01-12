@@ -51,7 +51,7 @@ public class PatientResource {
 		return patients;
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/id={id}")
 	@JsonView(Views.ViewPatient.class)
 	public Patient findById(@PathVariable Integer id) {
 		Optional<Patient> optPatient = repoPatient.findById(id);
@@ -99,7 +99,7 @@ public class PatientResource {
 	}
 
 	
-	@GetMapping("/{SS}")
+	@GetMapping("/ss={SS}")
 	@JsonView(Views.ViewPatient.class)
 	public Patient findBySS(@PathVariable String numeroSecuriteSociale) {
 		Optional<Patient> optPatient = repoPatient.findBySS(numeroSecuriteSociale);
