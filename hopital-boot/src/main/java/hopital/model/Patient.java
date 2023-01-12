@@ -6,17 +6,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 public class Patient {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonView(Views.ViewBase.class)
 	private Integer id;
 	@Column(name = "numero_ss", unique = true)
+	@JsonView(Views.ViewBase.class)
 	private String numeroSecuriteSociale;
 	@Column(length = 50, nullable = false)
+	@JsonView(Views.ViewBase.class)
 	private String nom;
 	@Column(length = 50, nullable = false)
+	@JsonView(Views.ViewBase.class)
 	private String prenom;
 
 	public Patient() {
