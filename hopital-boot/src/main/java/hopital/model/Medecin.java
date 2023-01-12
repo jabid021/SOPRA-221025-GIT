@@ -14,7 +14,7 @@ public class Medecin extends Compte {
 	@OneToMany(mappedBy = "medecin")
 	private List<Visite> visites = new ArrayList<>();
 
-	private transient int salle;
+	private transient int salle=1;
 
 	public Medecin() {
 	}
