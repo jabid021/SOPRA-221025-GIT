@@ -11,6 +11,8 @@ import hopital.model.Patient;
 public class FileAttenteService {
 	private final Queue<Patient> fileAttente = new LinkedList<>();
 
+	
+	
 	public void addPatient(Patient patient) {
 		this.fileAttente.add(patient);
 	}
