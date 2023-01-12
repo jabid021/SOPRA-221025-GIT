@@ -28,6 +28,6 @@ public interface ICompteRepository extends JpaRepository<Compte, Integer>{
 	Optional<Secretaire> findSecretaireById(Integer id);
 	
 	@Query("Select c from Compte c where c.login = :login and c.password = :password")
-	public Compte findByLoginAndPassword(String login, String password);
+	Compte findByLoginAndPassword(String login, String password);
 
 }
