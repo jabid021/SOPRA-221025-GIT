@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { SecretaireComponent } from './secretaire/secretaire.component';
 import { MedecinComponent } from './medecin/medecin.component';
+import { ConnexionHttpService } from './connexion/connexion-http.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { MedecinComponent } from './medecin/medecin.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ConnexionHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
