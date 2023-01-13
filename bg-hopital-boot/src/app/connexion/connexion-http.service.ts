@@ -21,8 +21,6 @@ export class ConnexionHttpService {
 existByPasswordAndLogin(login: string, password :string): Observable<Compte> {
     let authDTO = {"login": login, "password": password};
 
-      this.http.post(this.serviceUrl, authDTO);
-
 
   return this.http.post<Compte>(this.serviceUrl, authDTO);
 }

@@ -13,7 +13,7 @@ import { ConnexionHttpService } from './connexion/connexion-http.service';
   declarations: [
     AppComponent,
     ConnexionComponent,
-    SecretaireComponent
+    SecretaireComponent,
     MedecinComponent
   ],
   imports: [
